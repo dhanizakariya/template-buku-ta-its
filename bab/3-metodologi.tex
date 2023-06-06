@@ -1,0 +1,263 @@
+\chapter{METODOLOGI}
+\label{chap:metodologi}
+
+% Ubah bagian-bagian berikut dengan isi dari desain dan implementasi
+
+% Penelitian ini dilaksanakan sesuai \lipsum[1][1-5]
+
+\section{Metode Yang Digunakan}
+\label{sec:metode}
+
+% Sistem akan dibuat dengan \lipsum[1-2]
+
+% Contoh input gambar dengan format *.jpg
+\begin{figure} [ht] \centering
+  % Nama dari file gambar yang diinputkan
+  \includegraphics[scale=0.6]{gambar/metodologi.png}
+  % Keterangan gambar yang diinputkan
+  \caption{Metodologi Penelitian}
+  % Label referensi dari gambar yang diinputkan
+  \label{fig:metodologi}
+\end{figure}
+
+% Contoh penggunaan referensi dari gambar yang diinputkan
+Penulis akan menggunakan beberapa metode untuk menyelesaikan penelitian tersebut. 
+Metode yang digunakan dapat dilihat pada Gambar \ref*{fig:metodologi}
+
+\subsection{Preprocessing Data dan Desain Kromosom}
+  
+  Pada penelitian ini, penulis akan menggunakan data dari Departemen Teknik Komputer ITS yang meliputi data mata kuliah, 
+  jumlah ruangan, kapasitas masing-masing ruangan, jumlah dosen, dan jumlah mahasiswa. Data-data tersebut antara lain:
+  \begin{longtable}{|c|l|}
+    \caption{Dosen Departemen Teknik Komputer ITS}
+    \label{tb:DosenTekkom} \\
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    No. & Dosen                                         \\ \hline
+    1   & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ 
+    2   & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ 
+    3   & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ 
+    4   & Ir. Hany Boedinugroho, M.T.                   \\ 
+    5   & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ 
+    6   & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ 
+    7   & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ 
+    8   & Eko Pramunanto, S.T., M.T.                    \\ 
+    9   & Arief Kurniawan, S.T., M.T.                   \\ 
+    10  & Muhtadin, S.T., M.T.                          \\ 
+    11  & Atar Fuady Babgei, S.T., M.Sc.                \\ 
+    12  & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ 
+    13  & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ 
+    14  & Susi Juniastuti, S.T.,M.Eng.                  \\ 
+    15  & Ahmad Zaini, S.T., M.Sc.                      \\ 
+    16  & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ 
+    17  & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ 
+    \hline
+  \end{longtable}
+
+\begin{longtable}{|c|l|r|}
+  \caption{Mata Kuliah Semester Genap 2022-2023 \linebreak Departemen Teknik Komputer ITS}
+  \label{tb:matkul}\\
+  \hline
+  \rowcolor[HTML]{D0CECE} 
+  No. & Mata Kuliah & Peserta \\ \hline
+  1  & Aljabar Linear - A                            & 5  \\
+  2  & Arsitektur dan Organisasi Sistem Komputer - A & 30 \\
+  3  & Arsitektur dan Organisasi Sistem Komputer - B & 27 \\
+  4  & Dasar Pemrograman - P                         & 14 \\
+  5  & Deep Learning untuk Multimedia - A            & 19 \\
+  6  & Desain dan Pemrograman Game - A               & 9  \\
+  7  & Desain dan Pemrograman Game - P               & 8  \\
+  8  & Desain Dan Rekayasa Sistem - A                & 49 \\
+  9  & Desain Dan Rekayasa Sistem - B                & 40 \\
+  10 & Jaringan Komputer - A                         & 41 \\
+  11 & Jaringan Komputer - B                         & 40 \\
+  12 & Matematika Diskrit - A                        & 32 \\
+  13 & Matematika Diskrit - B                        & 59 \\
+  14 & Metode Numerik - A                            & 40 \\
+  15 & Metode Numerik - B                            & 40 \\
+  16 & Metode Numerik - C                            & 59 \\
+  17 & Pemrograman Lanjut - A                        & 39 \\
+  18 & Pemrograman Lanjut - B                        & 39 \\
+  19 & Pemrograman Sistem dan Jaringan - A           & 11 \\
+  20 & Pengantar Robotika - A                        & 33 \\
+  21 & Pengolahan Sinyal Digital - A                 & 26 \\
+  22 & Pengolahan Sinyal Digital - B                 & 26 \\
+  23 & Persamaan Differensial dan Deret - A          & 35 \\
+  24 & Persepsi Robot - A                            & 13 \\
+  25 & Probabilitas dan Statistik - A                & 28 \\
+  26 & Rangkaian Digital - A                         & 24 \\
+  27 & Rangkaian Listrik - A                         & 40 \\
+  28 & Rangkaian Listrik - B                         & 35 \\
+  29 & Sekuriti Sistem Komputer - A                  & 33 \\
+  30 & Sistem Manajemen Basis Data - A               & 25 \\
+  31 & Sistem Manajemen Basis Data - B               & 25 \\
+  32 & Sistem Mikroprosesor dan Mikrokontroller - A  & 26 \\
+  33 & Sistem Mikroprosesor dan Mikrokontroller - B  & 20 \\
+  34 & Sistem Operasi - A                            & 25 \\
+  35 & Sistem Operasi - B                            & 26 \\
+  36 & Sistem Tertanam - A                           & 27 \\
+  37 & Sistem Tertanam - B                           & 24 \\
+  38 & Visi Komputer - A                             & 16 \\    
+  \hline
+\end{longtable}
+
+
+\begin{longtable}{|c|l|r|}
+  \caption{Ruang Kelas Departemen Teknik Komputer ITS}
+  \label{tb:ruang}\\
+  \hline
+  \rowcolor[HTML]{D0CECE} 
+  No. & Ruangan & Kapasitas \\ \hline
+  1   & A108                                                 & 80                                                     \\ 
+  2   & A234                                                 & 36                                                     \\ 
+  3   & A235                                                 & 40                                                     \\ 
+  4   & AJ401                                                & 25                                                     \\ 
+  5   & AJ402                                                & 25                                                     \\ 
+  6   & B211                                                 & 25                                                     \\ 
+  7   & PASCA 2                                              & 40                                                     \\ 
+  \hline
+\end{longtable}
+  Data-data tersebut kemudian diolah sedemikian rupa sesuai dengan desain kromosom \linebreak sehingga dapat digunakan dalam proses algoritma genetika. Desain kromosom yang digunakan adalah sebagai berikut:
+\begin{figure} [ht] \centering
+    % Nama dari file gambar yang diinputkan
+    \includegraphics[scale=0.5]{gambar/kromosom.png}
+    % Keterangan gambar yang diinputkan
+    \caption{Desain Kromosom}
+    % Label referensi dari gambar yang diinputkan
+    \label{fig:kromosom}
+\end{figure}\\
+  Keterangan:\\
+  A = Dosen\\
+  B = Mata Kuliah\\
+  C = Ruangan\\
+  D = Waktu\\
+  n = Kromosom ke-n
+
+Sedangkan untuk proses pengkodean gen digunakan metode permutasi dengan \linebreak membangkitkan angka secara acak sesuai dengan panjang masing-masing data yang direpresentasikan oleh masing-masing gen.
+
+\subsection{Inisialisasi Populasi}
+  
+  Individu-individu baru akan dibuat dengan membangkitkan isi gen secara acak sesuai \linebreak dengan desain kromosom yang telah dibuat sebelumnya. Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kuliah yang akan dilaksanakan dalam satu semester perkuliahan. Individu yang telah dibuat, digunakan sebagai induk untuk proses algoritma genetika.
+  
+  \subsection{Evaluasi Fitness}
+  
+  Individu dievaluasi dengan fungsi fitness untuk menentukan kecocokan dengan batasan yang telah ditentukan sebelumnya. Fungsi fitness yang digunakan adalah sebagai berikut:
+  \begin{equation}
+    \label{eq:fitness2}
+    \mathbf{Fitness} = \frac{1}{1 + (F1 + F2 + \cdot \cdot \cdot +  Fn)}\; 
+  \end{equation}\\
+  Keterangan :\\
+  Fn = Banyaknya Pelanggaran\\
+  n  = Batasan ke-n\\
+
+  Sedangkan untuk batasan-batasan dari proses penjadwalan ini antara lain:
+  \begin{enumerate}
+    \item Satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu minggu
+    \item Satu ruangan hanya bisa dipakai satu kali dalam satu waktu
+    \item Satu dosen hanya bisa mengajar satu kali dalam satu waktu
+    \item Jumlah peserta perkuliahan tidak boleh melebihi kapasitas ruangan
+  \end{enumerate} 
+ 
+  \subsection{Pemilihan Individu Induk}
+  
+  Individu-individu yang telah melalui proses evaluasi dipilih untuk dijadikan sebagai induk untuk proses crossover.
+  Metode yang digunakan dalam proses seleksi ini adalah metode \linebreak rangking, dimana individu dengan fitness terbaik digunakan sebagai individu induk untuk proses selanjutnya.
+ 
+  \subsection{\emph{Crossover}}
+  
+  Kromosom-kromosom pada individu induk dipindahsilangkan satu dengan yang lainnya. Pada proses crossover ini digunakan 2 titik crossover yang dibangkitkan secara random.
+  Proses crossover ini menghasilkan 2 individu baru yang akan diteruskan ke proses mutasi.
+
+  \subsection{Mutasi}
+  
+  Mutasi merupakan proses perubahan isi gen dalam sebuah kromosom secara acak. Tidak semua individu baru hasil crossover mengalami mutasi. 
+  Individu-individu baru akan mengalami mutasi atau tidak, ditentukan oleh probabilitas mutasi dari proses algoritma genetika. 
+  Untuk menentukan proses mutasi atau tidak, dengan cara membangkitkan angka secara acak antara 0 hingga 1. 
+  Jika angka yang dibangkitkan memiliki nilai dibawah probabilitas mutasi, maka proses mutasi akan terjadi.
+  Proses mutasi akan menghasilkan 2 individu baru.
+  \subsection{Kriteria Penghentian}
+  
+  Proses algoritma genetika hanya akan berhenti jika telah memenuhi kriteria penghentian yang telah ditentukan sebelumnya. 
+  Kriteria penghentian ini dapat berupa nilai fitness tertentu, atau jumlah iterasi tertentu. 
+  Jika nilai fitness telah terpenuhi atau jumlah iterasi telah terlewati, maka proses algoritma genetika akan berhenti.
+
+\section{Bahan dan Peralatan yang Digunakan}
+Dalam penelitian ini akan digunakan beberapa perangkat yang dibutuhkan untuk menunjang berjalannya penelitian dengan baik.
+Berikut merupakan hardware dan software yang digunakan dalam melakukan proses pembuatan program sekaligus pengujian program yang digunakan pada penelitian ini.
+\subsection{\emph{Hardware}}
+Perangkat komputer yang digunakan untuk pengerjaan tugas akhir ini adalah \emph{Asus TUF FX 505 DT} dengan spesifikasi \emph{AMD Ryzen 5 R5-3550H Processor, GeForce GTX 1650 Graphics, 16GB DDR4, 1TB HDD, 512GB SSD,} dan \emph{Windows 11 64-bit}.
+\subsection{\emph{Software}}
+\emph{Software} yang digunakan dalam penelitian ini adalah \emph{Jupyter Notebook} dan \emph{Google Colab}.
+
+\section{Urutan Pelaksanaan Penelitian}
+
+% Ubah tabel berikut sesuai dengan isi dari rencana kerja
+\newcommand{\w}{}
+\newcommand{\G}{\cellcolor{gray}}
+\begin{table}[h!]
+  \caption{Tabel timeline}
+  \label{tb:timeline}
+  \begin{tabular}{|p{3.5cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+
+    \hline
+    \multirow{2}{*}{Kegiatan} & \multicolumn{16}{|c|}{Minggu} \\
+    \cline{2-17} &
+    1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+    \hline
+
+    % Gunakan \G untuk mengisi sel dan \w untuk mengosongkan sel
+    Studi Literatur &
+    \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
+    Pengumpulan Data &
+    \w & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
+    Preprocessing Data &
+    \w & \w & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
+    Pembuatan Program &
+    \w & \w & \w & \w & \G & \G & \G & \G & \G & \G & \G & \G & \w & \w & \w & \w \\
+    \hline
+
+    Pengujian Program &
+    \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \w & \w \\
+    \hline
+
+    Penyusunan \linebreak Laporan &
+    \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G \\
+    \hline
+
+  \end{tabular}
+\end{table}
+% \section{Bahan dan Alat yang Digunakan}
+%   \label{sec:bahan dan alat}
+
+% Alat diimplementasikan dengan \lipsum[1]
+
+% Contoh pembuatan potongan kode
+% \begin{lstlisting}[
+%   language=C++,
+%   caption={Program halo dunia.},
+%   label={lst:halodunia}
+% ]
+% #include <iostream>
+
+% int main() {
+%     std::cout << "Halo Dunia!";
+%     return 0;
+% }
+% \end{lstlisting}
+
+% \lipsum[2-3]
+
+% % Contoh input potongan kode dari file
+% \lstinputlisting[
+%   language=Python,
+%   caption={Program perhitungan bilangan prima.},
+%   label={lst:bilanganprima}
+% ]{program/bilangan-prima.py}
+
+% \lipsum[4]

@@ -37,6 +37,14 @@
 \usepackage{multirow}
 \usepackage{rotating}
 \usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{array}
+% \usepackage{makecell}
+
+%Mengganti caption gambar dan tabel
+\renewcommand{\figurename}{Gambar}
+\renewcommand{\tablename}{Tabel}
 
 % Definisi untuk "Hati ini sengaja dikosongkan"
 \patchcmd{\cleardoublepage}{\hbox{}}{
@@ -232,8 +240,8 @@
 \endgroup
 \cleardoublepage
 
-% \input{lainnya/lampiran.tex}
-% \cleardoublepage
+\input{lainnya/lampiran.tex}
+\cleardoublepage
 % Biografi penulis
 \input{lainnya/biografi-penulis.tex}
 \cleardoublepage

@@ -101,7 +101,6 @@ Metode yang digunakan dapat dilihat pada Gambar \ref*{fig:metodologi}
   \hline
 \end{longtable}
 
-
 \begin{longtable}{|c|l|r|}
   \caption{Ruang Kelas Departemen Teknik Komputer ITS}
   \label{tb:ruang}\\
@@ -117,6 +116,29 @@ Metode yang digunakan dapat dilihat pada Gambar \ref*{fig:metodologi}
   7   & PASCA 2                                              & 40                                                     \\ 
   \hline
 \end{longtable}
+
+\begin{longtable}[c]{|c|c|}
+  \caption{Waktu Perkuliahan Semester Genap 2022-2023 Departemen Teknik Komputer ITS}
+  \label{waktu}\\
+  \hline
+  \rowcolor[HTML]{D0CECE} 
+  Hari                    & Waktu       \\ \hline
+  \multirow{3}{*}{Senin}  & 07.30-10.00 \\ \cline{2-2} 
+                          & 10.00-12.30 \\ \cline{2-2} 
+                          & 13.30-16.00 \\ \hline
+  \multirow{3}{*}{Selasa} & 07.30-10.00 \\ \cline{2-2} 
+                          & 10.00-12.30 \\ \cline{2-2} 
+                          & 13.30-16.00 \\ \hline
+  \multirow{3}{*}{Rabu}   & 07.30-10.00 \\ \cline{2-2} 
+                          & 10.00-12.30 \\ \cline{2-2} 
+                          & 13.30-16.00 \\ \hline
+  \multirow{3}{*}{Kamis}  & 07.30-10.00 \\ \cline{2-2} 
+                          & 10.00-12.30 \\ \cline{2-2} 
+                          & 13.30-16.00 \\ \hline
+  \multirow{3}{*}{Jumat}  & 07.30-10.00 \\ \cline{2-2} 
+                          & 10.00-12.30 \\ \cline{2-2} 
+                          & 13.30-16.00 \\ \hline
+  \end{longtable}
   Data-data tersebut kemudian diolah sedemikian rupa sesuai dengan desain kromosom \linebreak sehingga dapat digunakan dalam proses algoritma genetika. Desain kromosom yang digunakan adalah sebagai berikut:
 \begin{figure} [ht] \centering
     % Nama dari file gambar yang diinputkan
@@ -133,48 +155,149 @@ Metode yang digunakan dapat dilihat pada Gambar \ref*{fig:metodologi}
   D = Waktu\\
   n = Kromosom ke-n
 
-Sedangkan untuk proses pengkodean gen digunakan metode permutasi dengan \linebreak membangkitkan angka secara acak sesuai dengan panjang masing-masing data yang direpresentasikan oleh masing-masing gen.
+Sedangkan untuk proses pengkodean gen digunakan metode permutasi dengan \linebreak membangkitkan angka secara acak yang mewakili urutan masing-masing data yang \linebreak direpresentasikan oleh masing-masing gen.
 
 \subsection{Inisialisasi Populasi}
+Hal pertama yang dilakukan dalam program penjadwalan ini adalah pembangkitan \linebreak individu-individu induk sesuai dengan desain kromosom yang telah dibuat sebelumnya. Individu ini berbentuk \emph{nested list} yang berisi list gen didalam list kromosom dalam satu kesatuan individu.  
+\begin{lstlisting}[
+  language=Python,
+  caption={Fungsi pembangkitan individu},
+  label={lst:Populasi}
+  ]
+  def create_individu():
+  individu = [[random.randint(1, len(Dosen.dosen)), 
+              i+1,
+               random.randint(1, len(Ruang.ruang)),
+               random.randint(1, len(Waktu.waktu))
+               ] 
+              for i in range (len(Matkul.matkul))]
+  return individu
+\end{lstlisting}
+Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kuliah yang akan dilaksanakan dalam satu semester perkuliahan.
+\subsection{Evaluasi Fitness}
   
-  Individu-individu baru akan dibuat dengan membangkitkan isi gen secara acak sesuai \linebreak dengan desain kromosom yang telah dibuat sebelumnya. Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kuliah yang akan dilaksanakan dalam satu semester perkuliahan. Individu yang telah dibuat, digunakan sebagai induk untuk proses algoritma genetika.
+  Individu-individu yang ada dievaluasi dengan fungsi fitness untuk menentukan kecocokan dengan batasan yang telah ditentukan sebelumnya. 
+  Fungsi fitness yang digunakan adalah sebagai berikut:
   
-  \subsection{Evaluasi Fitness}
-  
-  Individu dievaluasi dengan fungsi fitness untuk menentukan kecocokan dengan batasan yang telah ditentukan sebelumnya. Fungsi fitness yang digunakan adalah sebagai berikut:
   \begin{equation}
     \label{eq:fitness2}
-    \mathbf{Fitness} = \frac{1}{1 + (F1 + F2 + \cdot \cdot \cdot +  Fn)}\; 
+    \mathbf{Fitness} = \frac{1}{(1 + (F1 + F2 + \cdot \cdot \cdot +  Fn))}\; 
   \end{equation}\\
-  Keterangan :\\
-  Fn = Banyaknya Pelanggaran\\
+  Keterangan:\\
+  Fn = Banyaknya Konflik\\
   n  = Batasan ke-n\\
 
-  Sedangkan untuk batasan-batasan dari proses penjadwalan ini antara lain:
+  Fungsi \ref{eq:fitness2} akan menghitung banyaknya konflik yang ada pada satu individu. Konflik ini berupa pelanggaran pada batasan yang telah ditentukan sebelumnya.
+  Batasan-batasan tersebut antara lain:
   \begin{enumerate}
     \item Satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu minggu
     \item Satu ruangan hanya bisa dipakai satu kali dalam satu waktu
     \item Satu dosen hanya bisa mengajar satu kali dalam satu waktu
     \item Jumlah peserta perkuliahan tidak boleh melebihi kapasitas ruangan
   \end{enumerate} 
- 
-  \subsection{Pemilihan Individu Induk}
+ Pada proses penghitungan konflik, nilai 1 ditambahkan untuk menghindari hasil tak hingga ketika tidak ada pelanggaran sama sekali. 
+ Semakin besar nilai fitness yang dihasilkan, maka semakin baik individu tersebut dan semakin cocok dengan hasil penjadwalan yang diharapkan. 
+\subsection{Pemilihan Individu Induk}
   
-  Individu-individu yang telah melalui proses evaluasi dipilih untuk dijadikan sebagai induk untuk proses crossover.
-  Metode yang digunakan dalam proses seleksi ini adalah metode \linebreak rangking, dimana individu dengan fitness terbaik digunakan sebagai individu induk untuk proses selanjutnya.
- 
-  \subsection{\emph{Crossover}}
-  
-  Kromosom-kromosom pada individu induk dipindahsilangkan satu dengan yang lainnya. Pada proses crossover ini digunakan 2 titik crossover yang dibangkitkan secara random.
-  Proses crossover ini menghasilkan 2 individu baru yang akan diteruskan ke proses mutasi.
+  Individu-individu yang telah melalui proses evaluasi dipilih untuk dijadikan sebagai \linebreak induk untuk proses crossover.
+  Metode yang digunakan dalam proses seleksi ini adalah metode \linebreak rangking, dimana individu dengan fitness terbaik digunakan sebagai individu induk untuk proses selanjutnya. 
+  Proses pemilihan individu induk dilakukan dengan program dibawah ini:
+  \begin{lstlisting}[
+    language=Python,
+    caption={Fungsi pemilihan individu induk},
+    label={lst:selection}
+    ]
+    def selection(a,b,c,d,e,f):
+      pop = [a,b,c,d,e,f]
 
-  \subsection{Mutasi}
+      sorted_pop = sorted(pop, key=lambda x: fitness(x), reverse=True)
+      
+      x1 = sorted_pop[0]
+      x2 = sorted_pop[1]
+      fit = fitness(x1)
+
+    return x1,x2,fitness(x1)
+  \end{lstlisting}
+  Fungsi ini akan mengembalikan 2 individu terbaik dari total 6 individu yang dimasukkan, sekaligus mengembalikan nilai fitness dari individu terbaik. 
+  Individu yang dikembalikan ini digunakan untuk proses \emph{loop} berikutnya dan nilai fitness ini digunakan untuk kebutuhan penghentian proses penjadwalan otomatis ini.
+\subsection{\emph{Crossover}}
   
-  Mutasi merupakan proses perubahan isi gen dalam sebuah kromosom secara acak. Tidak semua individu baru hasil crossover mengalami mutasi. 
-  Individu-individu baru akan mengalami mutasi atau tidak, ditentukan oleh probabilitas mutasi dari proses algoritma genetika. 
-  Untuk menentukan proses mutasi atau tidak, dengan cara membangkitkan angka secara acak antara 0 hingga 1. 
+Crossover atau pindah silang adalah salah satu komponen algoritma genetika yang \linebreak berfungsi untuk mendapatkan solusi dengan melakukan pindah silang kromosom-kromosom dari dua buah individu yang biasa disebut \emph{parent}. 
+Proses ini akan menghasilkan 2 individu baru yang disebut dengan \emph{child}. Proses \emph{crossover} dilakukan dengan skema sesuai gambar dibawah ini:
+% \begin{lstlisting}[
+%   language=Python,
+%   caption={Fungsi crossover},
+%   label={lst:crossover},
+%   ]
+%   def crossover(a,b):
+%     a = list(a)
+%     b = list(b)
+%     n = random.randint(1, (len(a)-1))
+%     m = random.randint(n, (len(a)-1))
+
+%     for i in range (n, m):
+%       a[i],b[i] = b[i],a[i]
+
+%   return a,b
+% \end{lstlisting}
+\begin{figure} [ht] \centering
+  % Nama dari file gambar yang diinputkan
+  \includegraphics[scale=0.4]{gambar/cross.png}
+  % Keterangan gambar yang diinputkan
+  \caption{Two Points Crossover}
+  % Label referensi dari gambar yang diinputkan
+  \label{fig:cross}
+\end{figure}
+
+Pada proses crossover ini digunakan 2 titik crossover berupa angka yang dibangkitkan secara random.
+Kromosom yang berada diantara 2 titik tersebut, dipindahkan antara satu induk dengan induk yang lain sehingga menghasilkan 2 individu baru.
+\emph{Child} atau individu baru yang dihasilkan dari proses ini akan diteruskan ke proses mutasi.
+
+\subsection{Mutasi}
+  
+  Mutasi merupakan proses dalam algoritma genetika yang bertujuan untuk mengubah isi gen dalam sebuah kromosom secara acak. 
+  Tidak semua individu baru hasil crossover \linebreak mengalami proses mutasi. 
+  Individu-individu baru akan mengalami mutasi atau tidak, ditentukan oleh probabilitas mutasi dari proses algoritma genetika yang telah ditentukan sebelumnya. 
+  Proses mutasi dilakukan dengan program berikut ini:
+  \begin{lstlisting}[
+    language=Python,
+    caption={Fungsi mutasi},
+    label={lst:mutasi},
+    ]
+    def gA(a,b,rate):
+      generation = 0
+      score = 0.00
+      while True:
+        if generation == 200000 or score == 1.00:
+          
+          break
+        else:
+          print("Generation: ", generation)
+          c,d = crossover(a,b)
+          e,f = mutate(c,d,rate)
+          a,b,fit = selection(a,b,c,d,e,f)
+          
+          print("Fitness a:", fitness(a))
+          print("Fitness b:", fitness(b))
+          print("\n")
+          score = fit
+          generation = generation+1
+
+      return a    
+  \end{lstlisting}
+  Untuk menentukan proses mutasi berjalan atau tidak, dilakukan dengan cara membangkitkan angka secara acak antara 0 hingga 1. 
   Jika angka yang dibangkitkan memiliki nilai dibawah probabilitas mutasi, maka proses mutasi akan terjadi.
-  Proses mutasi akan menghasilkan 2 individu baru.
+  \begin{figure} [ht] \centering
+    % Nama dari file gambar yang diinputkan
+    \includegraphics[scale=0.4]{gambar/mutation.png}
+    % Keterangan gambar yang diinputkan
+    \caption{Proses Mutasi}
+    % Label referensi dari gambar yang diinputkan
+    \label{fig:mutate}
+  \end{figure}
+
+  Proses mutasi akan membangkitkan ulang nilai gen-gen pada sebuah cromosom secara acak (Gambar \ref{fig:mutate}). Penentuan posisi kromosom yang dimutasi juga dilakukan secara acak dengan membangkitkan angka dalam jangkauan tertentu. 
+  Proses mutasi ini menghasilkan 2 individu baru.
   \subsection{Kriteria Penghentian}
   
   Proses algoritma genetika hanya akan berhenti jika telah memenuhi kriteria penghentian yang telah ditentukan sebelumnya. 
@@ -185,12 +308,11 @@ Sedangkan untuk proses pengkodean gen digunakan metode permutasi dengan \linebre
 Dalam penelitian ini akan digunakan beberapa perangkat yang dibutuhkan untuk menunjang berjalannya penelitian dengan baik.
 Berikut merupakan hardware dan software yang digunakan dalam melakukan proses pembuatan program sekaligus pengujian program yang digunakan pada penelitian ini.
 \subsection{\emph{Hardware}}
-Perangkat komputer yang digunakan untuk pengerjaan tugas akhir ini adalah \emph{Asus TUF FX 505 DT} dengan spesifikasi \emph{AMD Ryzen 5 R5-3550H Processor, GeForce GTX 1650 Graphics, 16GB DDR4, 1TB HDD, 512GB SSD,} dan \emph{Windows 11 64-bit}.
+Perangkat komputer yang digunakan untuk pengerjaan tugas akhir ini antara lain \emph{Asus TUF FX 505 DT} dengan spesifikasi \emph{AMD Ryzen 5 R5-3550H Processor, GeForce GTX 1650 Graphics, 16GB DDR4, 1TB HDD, 512GB SSD,} dan \emph{Windows 11 64-bit}.
 \subsection{\emph{Software}}
 \emph{Software} yang digunakan dalam penelitian ini adalah \emph{Jupyter Notebook} dan \emph{Google Colab}.
 
 \section{Urutan Pelaksanaan Penelitian}
-
 % Ubah tabel berikut sesuai dengan isi dari rencana kerja
 \newcommand{\w}{}
 \newcommand{\G}{\cellcolor{gray}}

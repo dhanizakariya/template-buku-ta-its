@@ -3,31 +3,34 @@
 
 % Ubah bagian-bagian berikut dengan isi dari desain dan implementasi
 
-% Penelitian ini dilaksanakan sesuai \lipsum[1][1-5]
+Penelitian ini dilaksanakan sesuai dengan desain sistem berikut dengan implementasinya.
+Desain sistem merupakan konsep dari pembuatan dan perancangan keseluruhan sistem yang diwujudkan dalam blok-blok alur yang harus dikerjakan. 
+Implementasi merupakan pelaksanaan teknis dari setiap blok yang ada pada desain sistem.
 
-\section{Metode Yang Digunakan}
-\label{sec:metode}
-
-% Sistem akan dibuat dengan \lipsum[1-2]
-
-% Contoh input gambar dengan format *.jpg
+\section{Desain Sistem}
+\label{sec:Desain Sistem}
+Sistem yang dibuat pada tugas akhir ini merupakan implementasi dari konsep Algoritma Genetika yang merupakan teknik pencarian dengan memanfaatkan proses seleksi alamiah yang dikenal dengan proses evolusi.
+Desain sistem secara keseluruhan dapat dilihat pada Gambar \ref{fig:metodologi}
 \begin{figure} [ht] \centering
   % Nama dari file gambar yang diinputkan
-  \includegraphics[scale=0.6]{gambar/metodologi.png}
+  \includegraphics[scale=0.55]{gambar/desain.png}
   % Keterangan gambar yang diinputkan
-  \caption{Metodologi Penelitian}
+  \caption{Desain Keseluruhan Sistem}
   % Label referensi dari gambar yang diinputkan
   \label{fig:metodologi}
 \end{figure}
 
-% Contoh penggunaan referensi dari gambar yang diinputkan
-Penulis akan menggunakan beberapa metode untuk menyelesaikan penelitian tersebut. 
-Metode yang digunakan dapat dilihat pada Gambar \ref*{fig:metodologi}
+Agar sistem yang dibuat dapat mencapai tujuan yang telah ditentukan, maka sistem harus mengikuti rancangan yang tela ditentukan.
+Pada Gambar \ref{fig:metodologi} dapat dilihat bahwa terdapat 2 proses penting yaitu preprocessing data dan proses algoritma genetika itu sendiri.
+Pada proses preprocessing data dilakukan pengumpulan data-data yang diperlukan berupa data mata kuliah, dosen, ruangan dan waktu perkulihaan, desain kromosom yang digunakan, dan proses pengkodean gen.
+Setelah kromosom dan data siap, proses selanjutnya adalah proses algoritma genetika yang terdiri atas inisialisasi populasi, evaluasi fitness, seleksi, crossover, dan mutasi.
+Pada proses algoritma genetika, terdapat kondisi yang menghentikan seluruh proses algoritma genetika yang disebut dengan kriteria penghentian.
+Jika terdapat individu yang memenuhi kriteria penghentian, individu tersebut dijadikan individu terbaik yang kemudian dapat diterjemahkan dalam bentuk tabel jadwal perkuliahan untuk satu pekan.
 
-\subsection{Preprocessing Data dan Desain Kromosom}
+\subsection{Preprocessing Data}
   
-  Pada penelitian ini, penulis akan menggunakan data dari Departemen Teknik Komputer ITS yang meliputi data mata kuliah, 
-  jumlah ruangan, kapasitas masing-masing ruangan, jumlah dosen, dan jumlah mahasiswa. Data-data tersebut antara lain:
+  Preprocessing data pada penelitian ini meliputi proses pengumpulan data, desain kromosom, dan pengkodean kromosom. Pada penelitian ini, penulis akan menggunakan data dari Departemen Teknik Komputer ITS yang meliputi data mata kuliah, 
+  jumlah ruangan, kapasitas masing-masing ruangan, jumlah dosen, dan jumlah mahasiswa pada tiap mata kuliah. Data-data tersebut antara lain:
   \begin{longtable}{|c|l|}
     \caption{Dosen Departemen Teknik Komputer ITS}
     \label{tb:DosenTekkom} \\
@@ -117,7 +120,7 @@ Metode yang digunakan dapat dilihat pada Gambar \ref*{fig:metodologi}
   \hline
 \end{longtable}
 
-\begin{longtable}[c]{|c|c|}
+\begin{longtable}[c]{|c|>{\centering\arraybackslash}m{3cm}|}
   \caption{Waktu Perkuliahan Semester Genap 2022-2023 Departemen Teknik Komputer ITS}
   \label{waktu}\\
   \hline
@@ -189,7 +192,7 @@ Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kulia
 
   Fungsi \ref{eq:fitness2} akan menghitung banyaknya konflik yang ada pada satu individu. Konflik ini berupa pelanggaran pada batasan yang telah ditentukan sebelumnya.
   Batasan-batasan tersebut antara lain:
-  \begin{enumerate}
+  \begin{enumerate}[nolistsep]
     \item Satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu minggu
     \item Satu ruangan hanya bisa dipakai satu kali dalam satu waktu
     \item Satu dosen hanya bisa mengajar satu kali dalam satu waktu
@@ -255,9 +258,9 @@ Kromosom yang berada diantara 2 titik tersebut, dipindahkan antara satu induk de
 
 \subsection{Mutasi}
   
-  Mutasi merupakan proses dalam algoritma genetika yang bertujuan untuk mengubah isi gen dalam sebuah kromosom secara acak. 
+  Mutasi merupakan proses dalam algoritma genetika yang bertujuan untuk mengubah \linebreak isi gen dalam sebuah kromosom secara acak. 
   Tidak semua individu baru hasil crossover \linebreak mengalami proses mutasi. 
-  Individu-individu baru akan mengalami mutasi atau tidak, ditentukan oleh probabilitas mutasi dari proses algoritma genetika yang telah ditentukan sebelumnya. 
+  Individu-individu baru akan mengalami mutasi atau tidak, \linebreak ditentukan oleh probabilitas mutasi dari proses algoritma genetika yang telah ditentukan sebelumnya. 
   Proses mutasi dilakukan dengan program berikut ini:
   \begin{lstlisting}[
     language=Python,
@@ -312,48 +315,48 @@ Perangkat komputer yang digunakan untuk pengerjaan tugas akhir ini antara lain \
 \subsection{\emph{Software}}
 \emph{Software} yang digunakan dalam penelitian ini adalah \emph{Jupyter Notebook} dan \emph{Google Colab}.
 
-\section{Urutan Pelaksanaan Penelitian}
-% Ubah tabel berikut sesuai dengan isi dari rencana kerja
-\newcommand{\w}{}
-\newcommand{\G}{\cellcolor{gray}}
-\begin{table}[h!]
-  \caption{Tabel timeline}
-  \label{tb:timeline}
-  \begin{tabular}{|p{3.5cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+% \section{Urutan Pelaksanaan Penelitian}
+% % Ubah tabel berikut sesuai dengan isi dari rencana kerja
+% \newcommand{\w}{}
+% \newcommand{\G}{\cellcolor{gray}}
+% \begin{table}[h!]
+%   \caption{Tabel timeline}
+%   \label{tb:timeline}
+%   \begin{tabular}{|p{3.5cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 
-    \hline
-    \multirow{2}{*}{Kegiatan} & \multicolumn{16}{|c|}{Minggu} \\
-    \cline{2-17} &
-    1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
-    \hline
+%     \hline
+%     \multirow{2}{*}{Kegiatan} & \multicolumn{16}{|c|}{Minggu} \\
+%     \cline{2-17} &
+%     1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+%     \hline
 
-    % Gunakan \G untuk mengisi sel dan \w untuk mengosongkan sel
-    Studi Literatur &
-    \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
-    \hline
+%     % Gunakan \G untuk mengisi sel dan \w untuk mengosongkan sel
+%     Studi Literatur &
+%     \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+%     \hline
 
-    Pengumpulan Data &
-    \w & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
-    \hline
+%     Pengumpulan Data &
+%     \w & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+%     \hline
 
-    Preprocessing Data &
-    \w & \w & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
-    \hline
+%     Preprocessing Data &
+%     \w & \w & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+%     \hline
 
-    Pembuatan Program &
-    \w & \w & \w & \w & \G & \G & \G & \G & \G & \G & \G & \G & \w & \w & \w & \w \\
-    \hline
+%     Pembuatan Program &
+%     \w & \w & \w & \w & \G & \G & \G & \G & \G & \G & \G & \G & \w & \w & \w & \w \\
+%     \hline
 
-    Pengujian Program &
-    \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \w & \w \\
-    \hline
+%     Pengujian Program &
+%     \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \w & \w \\
+%     \hline
 
-    Penyusunan \linebreak Laporan &
-    \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G \\
-    \hline
+%     Penyusunan \linebreak Laporan &
+%     \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G & \G \\
+%     \hline
 
-  \end{tabular}
-\end{table}
+%   \end{tabular}
+% \end{table}
 % \section{Bahan dan Alat yang Digunakan}
 %   \label{sec:bahan dan alat}
 

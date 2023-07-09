@@ -79,25 +79,73 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
   Pada umumnya dikenal beberapa skema pendekodean kromosom, yaitu antara lain : 
   \begin{enumerate}
     \item Binary Encoding
-    
+      \begin{figure} [ht] \centering
+        % Nama dari file gambar yang diinputkan
+        \includegraphics[scale=0.25]{gambar/binary.png}
+        % Keterangan gambar yang diinputkan
+        \caption{\emph{Binary encoding}}
+        % Label referensi dari gambar yang diinputkan
+        \label{fig:binary}
+      \end{figure}
+
     Skema pengkodean ini merupakan skema pengkodean yang paling sering \linebreak digunakan. 
     Tiap gen atau kromosom direpresentasikan dengan angka 1 atau 0. Pada skema pengkodean biner, 
-    tiap bit merepresentasikan karakteristik dari solusi. Metode ini membuat implementasi operasi 
-    crossover dan mutase menjadi lebih cepat. Namun skema ini memerlukan proses yang lebih rumit karena harus \linebreak 
-    mengonversi data menjadi kode biner dan akurasi dari algoritma ditentukan oleh proses konversinya (Katoch, et al. 2021).
+    tiap bit merepresentasikan karakteristik dari solusi. \linebreak Disisi lain, tiap biner juga merepresentasikan sebuah nilai.
+    Metode ini membuat implementasi operasi crossover dan mutasi menjadi lebih cepat. 
+    Metode crossover yang mungkin digunakan pada pengkodean biner adalah crossover 1 titik, crossover banyak titik, crossover uniform dan crossover aritmatika.
+    Metode mutasi yang dapat digunakan pada pengkodean ini adalah mutasi flip.
+    Dalam mutasi Flip, bit berubah dari 0 menjadi 1 dan 1 menjadi 0 berdasarkan kromosom mutasi yang dihasilkan.
+    Namun skema pengkodean ini memerlukan proses yang lebih rumit karena harus mengonversi data menjadi kode biner dan akurasi dari algoritma ditentukan oleh proses konversinya (\cite{Katoch2020}).
     \item Octal Encoding
-    
-    Pada skema pengkodean oktal, gen atau kromosom direpresentasikan dalam bentuk angka oktal (0-7) (\cite{Katoch2020}).
-    \item Hexadecimal Encoding
-    
-    Pada skema pengkodean heksadesimal, gen atau kromosom direpresentasikan dalam bentuk angka heksadesimal(0-9, A-F) (\cite{Katoch2020}).
-    \item Permutation Encoding
-    
-    Dalam skema pengkodean ini, gen atau kromosom diwakili oleh deretan angka yang mewakili posisi dalam suatu urutan(\cite{Katoch2020}). 
-    \item Value Encoding
-    
-    Dalam skema pengkodean ini, gen atau kromosom direpresentasikan menggunakan string dari beberapa nilai. Nilai-nilai ini bisa berupa bilangan real, bilangan bulat, atau karakter huruf. Skema pengkodean ini dapat membantu dalam memecahkan masalah di mana nilai yang lebih rumit digunakan. Karena pengkodean biner mungkin gagal dalam masalah seperti itu. Ini terutama digunakan dalam \emph{neural network} untuk menemukan bobot optimal(\cite{Katoch2020}).
+      \begin{figure} [ht] \centering
+        % Nama dari file gambar yang diinputkan
+        \includegraphics[scale=0.6]{gambar/octal.png}
+        % Keterangan gambar yang diinputkan
+        \caption{\emph{Octal encoding}}
+        % Label referensi dari gambar yang diinputkan
+        \label{fig:octal}
+      \end{figure}
 
+    Pada skema pengkodean oktal, gen atau kromosom direpresentasikan dalam bentuk angka oktal (0-7) (\cite{kumar2013encoding}).
+    \item Hexadecimal Encoding
+      \begin{figure} [ht] \centering
+        % Nama dari file gambar yang diinputkan
+        \includegraphics[scale=0.6]{gambar/hexa.png}
+        % Keterangan gambar yang diinputkan
+        \caption{\emph{Hexadecimal encoding}}
+        % Label referensi dari gambar yang diinputkan
+        \label{fig:hexa}
+      \end{figure}
+
+    Pada skema pengkodean heksadesimal, gen atau kromosom direpresentasikan dalam bentuk angka heksadesimal(0-9, A-F) (\cite{kumar2013encoding}).
+    \item Permutation Encoding
+      \begin{figure} [ht] \centering
+          % Nama dari file gambar yang diinputkan
+          \includegraphics[scale=0.6]{gambar/permutation.png}
+          % Keterangan gambar yang diinputkan
+          \caption{\emph{Permutation encoding}}
+          % Label referensi dari gambar yang diinputkan
+          \label{fig:permutation}
+        \end{figure}
+
+        Pengkodean Permutasi digunakan dalam masalah pengurutan. 
+        Dalam hal ini, setiap kromosom merepresentasikan posisi dalam sebuah urutan, misalnya dalam \emph{travelling salesman problem}, rangkaian angka merepresentasikan urutan kota yang dikunjungi oleh salesman.
+        Terkadang, proses koreksi diperlukan setelah proses algoritma genetika dilakukan.(\cite{kumar2013encoding}). 
+    \item Value Encoding
+
+    Dalam skema pengkodean ini, gen atau kromosom direpresentasikan menggunakan string dari beberapa nilai. 
+    Nilai-nilai ini bisa berupa bilangan real, bilangan bulat, atau karakter huruf. 
+    Skema pengkodean ini dapat membantu dalam memecahkan masalah di mana nilai yang lebih rumit digunakan. 
+    Karena pengkodean biner mungkin gagal dalam masalah seperti itu. 
+    Metode encoding ini sering digunakan dalam \emph{neural network} untuk menemukan bobot optimal(\cite{Katoch2020}).
+    \begin{figure} [!h] \centering
+      % Nama dari file gambar yang diinputkan
+      \includegraphics[scale=0.6]{gambar/hexa.png}
+      % Keterangan gambar yang diinputkan
+      \caption{\emph{Hexadecimal encoding}}
+      % Label referensi dari gambar yang diinputkan
+      \label{fig:hexa}
+    \end{figure}
   \end{enumerate}
   
   \item Inisialiasi Populasi Awal
@@ -128,13 +176,47 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
   
   \begin{enumerate}
     \item \emph{Roulette wheel}
-    
+    \begin{figure} [ht] \centering
+      % Nama dari file gambar yang diinputkan
+      \includegraphics[scale=0.6]{gambar/roulette_wheel_selection.jpg}
+      % Keterangan gambar yang diinputkan
+      \caption{\emph{Roulette wheel selection}}
+      % Label referensi dari gambar yang diinputkan
+      \label{fig:roulette}
+    \end{figure}
+
     Metode \emph{roulette wheel} memetakan semua individu sesuai dengan nilai probabilitasnya. Probabilitas ini ditentukan berdasarkan nilai fitnessnya. Individu tersebut dipetakan ke dalam roda, kemudian diputar secara acak untuk menentukan individu mana yang akan berpartisipasidalam pembentukan generasi berikutnya(\cite{Katoch2020}.)
+    
     \item \emph{Rank}
+    \begin{figure} [ht] \centering
+      % Nama dari file gambar yang diinputkan
+      \includegraphics[scale=0.6]{gambar/rank_selection.jpg}
+      % Keterangan gambar yang diinputkan
+      \caption{\emph{Roulette wheel selection}}
+      % Label referensi dari gambar yang diinputkan
+      \label{fig:roulette}
+    \end{figure}
+    % \begin{figure} [ht] \centering
+    %   % Nama dari file gambar yang diinputkan
+    %   \includegraphics[scale=0.4]{gambar/rank_selection.jpg}
+    %   % Keterangan gambar yang diinputkan
+    %   \caption{\emph{Rank selection}}
+    %   % Label referensi dari gambar yang diinputkan
+    %   \label{fig:rank}
+    % \end{figure}
     
     Metode \emph{rank} merupakan modifikasi dari metode \emph{roulette wheel}. Metode ini menggunakan ranking dari masing-masing individu berdasarkan nilai fitnesnya. Metode ini mengurangi kemungkinan konvergensi solusi sebelum waktunya(\cite{Katoch2020}).
     \item \emph{Tournament} 
     
+    \begin{figure} [ht] \centering
+      % Nama dari file gambar yang diinputkan
+      \includegraphics[scale=0.4]{gambar/tournament_selection.jpg}
+      % Keterangan gambar yang diinputkan
+      \caption{\emph{Tournament selection}}
+      % Label referensi dari gambar yang diinputkan
+      \label{fig:tournament}
+    \end{figure}
+
     Teknik pemilihan \emph{tournament} pertama kali diusulkan oleh Brindle pada tahun 1983. Individu dipilih berdasarkan nilai fitness mereka pada \emph{stochastic roulette wheel} secara berpasangan. Setelah seleksi,
     individu dengan nilai fitness yang lebih tinggi akan ditambahkan ke \emph{pool} generasi berikutnya(\cite{Katoch2020}).
     \item \emph{Boltzmann} 
@@ -143,6 +225,14 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
     Carlo Simulation}. Metode ini membantu dalam memecahkan masalah konvergensi prematur(\cite{Katoch2020}).
     \item \emph{Stochastic Universal Sampling}
     
+    \begin{figure} [ht] \centering
+      % Nama dari file gambar yang diinputkan
+      \includegraphics[scale=0.4]{gambar/sus.jpg}
+      % Keterangan gambar yang diinputkan
+      \caption{\emph{Tournament selection}}
+      % Label referensi dari gambar yang diinputkan
+      \label{fig:tournament}
+    \end{figure}
     \emph{Stochastic Universal Sampling} merupakan pengembangan dari metode \emph{roulette \linebreak wheel}. Pada metode ini, posisi tiap individu ditentukan secara acak dengan jarak yang sama antar satu dengan yang lain. Dengan metode ini semua individu memiliki kesempatan yang sama untuk terpilih(\cite{Katoch2020}).
   \end{enumerate}
   \item Crossover

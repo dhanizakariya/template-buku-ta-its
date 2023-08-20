@@ -176,7 +176,11 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
   
   \begin{enumerate}
     \item \emph{Roulette wheel}
-    \begin{figure} [ht] \centering
+    
+
+    Metode \emph{roulette wheel} memetakan semua individu sesuai dengan nilai probabilitasnya. Probabilitas ini ditentukan berdasarkan nilai fitnessnya. Individu tersebut dipetakan ke dalam roda, kemudian diputar secara acak untuk menentukan individu mana yang akan berpartisipasidalam pembentukan generasi berikutnya(\cite{Katoch2020}.)
+    
+    \begin{figure} [!h] \centering
       % Nama dari file gambar yang diinputkan
       \includegraphics[scale=0.6]{gambar/roulette_wheel_selection.jpg}
       % Keterangan gambar yang diinputkan
@@ -185,32 +189,24 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
       \label{fig:roulette}
     \end{figure}
 
-    Metode \emph{roulette wheel} memetakan semua individu sesuai dengan nilai probabilitasnya. Probabilitas ini ditentukan berdasarkan nilai fitnessnya. Individu tersebut dipetakan ke dalam roda, kemudian diputar secara acak untuk menentukan individu mana yang akan berpartisipasidalam pembentukan generasi berikutnya(\cite{Katoch2020}.)
-    
     \item \emph{Rank}
-    \begin{figure} [ht] \centering
-      % Nama dari file gambar yang diinputkan
-      \includegraphics[scale=0.6]{gambar/rank_selection.jpg}
-      % Keterangan gambar yang diinputkan
-      \caption{\emph{Roulette wheel selection}}
-      % Label referensi dari gambar yang diinputkan
-      \label{fig:roulette}
-    \end{figure}
-    % \begin{figure} [ht] \centering
-    %   % Nama dari file gambar yang diinputkan
-    %   \includegraphics[scale=0.4]{gambar/rank_selection.jpg}
-    %   % Keterangan gambar yang diinputkan
-    %   \caption{\emph{Rank selection}}
-    %   % Label referensi dari gambar yang diinputkan
-    %   \label{fig:rank}
-    % \end{figure}
     
     Metode \emph{rank} merupakan modifikasi dari metode \emph{roulette wheel}. Metode ini menggunakan ranking dari masing-masing individu berdasarkan nilai fitnesnya. Metode ini mengurangi kemungkinan konvergensi solusi sebelum waktunya(\cite{Katoch2020}).
+    
+    \begin{figure} [ht] \centering
+      % Nama dari file gambar yang diinputkan
+      \includegraphics[scale=0.55]{gambar/rank_selection.jpg}
+      % Keterangan gambar yang diinputkan
+      \caption{\emph{Rank selection}}
+      % Label referensi dari gambar yang diinputkan
+      \label{fig:rank}
+    \end{figure}
+
     \item \emph{Tournament} 
     
     \begin{figure} [ht] \centering
       % Nama dari file gambar yang diinputkan
-      \includegraphics[scale=0.4]{gambar/tournament_selection.jpg}
+      \includegraphics[scale=0.6]{gambar/tournament_selection.jpg}
       % Keterangan gambar yang diinputkan
       \caption{\emph{Tournament selection}}
       % Label referensi dari gambar yang diinputkan
@@ -227,11 +223,11 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
     
     \begin{figure} [ht] \centering
       % Nama dari file gambar yang diinputkan
-      \includegraphics[scale=0.4]{gambar/sus.jpg}
+      \includegraphics[scale=0.6]{gambar/sus.jpg}
       % Keterangan gambar yang diinputkan
-      \caption{\emph{Tournament selection}}
+      \caption{\emph{Stochastic Universal Sampling}}
       % Label referensi dari gambar yang diinputkan
-      \label{fig:tournament}
+      \label{fig:SUS}
     \end{figure}
     \emph{Stochastic Universal Sampling} merupakan pengembangan dari metode \emph{roulette \linebreak wheel}. Pada metode ini, posisi tiap individu ditentukan secara acak dengan jarak yang sama antar satu dengan yang lain. Dengan metode ini semua individu memiliki kesempatan yang sama untuk terpilih(\cite{Katoch2020}).
   \end{enumerate}
@@ -247,7 +243,71 @@ Berikut ini adalah uraian singkat dari tahapan-tahapan dalam proses algoritma ge
   keanekaragaman string dalam satu populasi
   dengan penyilangan antar string yang diperoleh
   dari reproduksi sebelumnya. Hasil crossover 2
-  kromosom induk akan menghasilkan 2 \emph{offspring}(\cite{JMASIF2649})
+  kromosom induk akan menghasilkan 2 \emph{offspring}(\cite{JMASIF2649}).
+  Ada beberapa metode yang bisa digunakan untuk melakukan crossover, antara lain:
+  \begin{enumerate}[nolistsep]
+    \item Single Point Crossover
+    
+    Metode ini merupakan metode crossover yang paling umum digunakan. 
+    Pada \linebreak metode ini, satu titik persilangan dipilih secara acak di sepanjang kromosom yang disilangkan. 
+    Kemudian bagian kepala dan ekor dari masing-masing induk ditukar antara satu sama lain. 
+    Jika titik persilangan yang dipilih sesuai, maka offspring yang dihasilkan akan menjadi lebih baik. 
+    Sebaliknya jika titik yang dipilih salah, maka hal ini akan menghambat proses algoritma genetika menuju tujuannya (\cite{Kora}). 
+    \item N-Point Crossover
+    
+    Crossover N-point pertama kali diimplementasikan oleh De Jong pada tahun 1975. 
+    Crossover ini memiliki banyak titik crossover namun aturan yang digunakan sama dengan yang digunakan pada crossover satu titik. 
+    Pada crossover 2 titik, titik \linebreak persilangan adalah 2. 
+    Menambahkan lebih banyak titik crossover akan berdampak pada terganggunya blok-blok pembangun yang terkadang mengurangi kinerja\linebreak algoritma genetika. 
+    Namun, hal ini memungkinkan bagian kepala dan ekor \linebreak kromosom untuk diterima secara bersamaan pada keturunannya (\cite{Kora}). 
+    \item Uniform Crossover
+    
+    Pada uniform crossover,tidak dilakukan pemecahan kromosom untuk rekombinasi. 
+    Setiap gen pada keturunan dibuat dengan cara menyalinnya dari induk yang dipilih sesuai dengan bit yang sesuai. 
+    Crossover ini biasanya digunakan pada kromosom dengan binary encoding. 
+    Crossover mask memiliki panjang yang sama dengan panjang kromosom induk. 
+    Jika bit pada crossover mask adalah 1, maka gen yang dihasilkan disalin dari induk pertama dan jika bit pada crossover mask adalah 0, maka gen yang dihasilkan disalin dari induk kedua. 
+    Crossover mask baru dibuat secara acak untuk setiap pasangan kromosom induk. 
+    Jumlah titik crossover pada awalnya tidak ditetapkan. 
+    Jadi, keturunannya memiliki campuran gen dari kedua orang tua (\cite{Kora}).
+    \item Three Parent Crossover
+    
+    Dalam persilangan ini, tiga induk dipilih secara acak. 
+    Setiap gen dari induk pertama dibandingkan dengan gen yang setara dari induk kedua. 
+    Jika kedua gen serupa, gen tersebut digunakan untuk keturunannya, atau jika tidak, gen yang setara dari induk ke-3 diambil untuk keturunannya. 
+    Metode ini seringkali digunakan dalam kasus kromosom yang menggunakan pengkodean biner (\cite{Kora}).
+    \item Arithmetic Crossover
+    
+    Crossover aritmatika digunakan dalam kasus kromosom dengan real-value encoding. 
+    Operator crossover aritmatika menggabungkan dua kromosom induk secara linear, dua kromosom tertentu secara acak untuk crossover dan membuat dua keturunan yang merupakan campuran linear dari orang tua mereka. (\cite{Kora})
+  
+    \item Partially Mapped Crossover
+    
+    Partially Matched atau Mapped Crossover (PMX) adalah metode crossover yang paling sering digunakan. 
+    Diusulkan oleh Goldberg dan Lingle untuk Travelling Salesman Problem. 
+    Dalam Partially Matched Crossover, dua kromosom \linebreak dihubungkan dan dua titik persilangan dipilih secara acak. 
+    Fraksi kromosom antara dua titik crossover memberikan pilihan yang sesuai yang mengalami proses crossover melalui operasi pertukaran posisi per posisi (\cite{Kora}).
+  
+    \item Crossover ORDER (OX)
+    
+    Metode ini diusulkan oleh Davis dan juga digunakan untuk kromosom dengan \linebreak pengkodean permutasi. 
+    Prosesnya dimulai dengan cara yang mirip dengan PMX dengan memilih dua titik persilangan. 
+    Namun, alih-alih menggunakan pertukaran titik demi titik seperti pada PMX, order crossover menggunakan gerakan geser untuk mengisi lubang yang ditinggalkan dengan mengirimkan posisi yang dipetakan. 
+    Metode ini menyalin bagian dari elemen permutasi antara titik-titik crossover dari string yang dipotong langsung ke keturunannya, menyisipkannya di posisi absolut yang sama (\cite{Kora}).
+  
+    \item Cycle Crossover (CX)
+    
+    Persilangan ini digunakan untuk kromosom dengan pengkodean permutasi. 
+    Selama rekombinasi pada cyclic crossover terdapat batasan bahwa setiap gen berasal dari satu induk atau induk lainnya. 
+    Model dasar pada cycle crossover adalah bahwa setiap alel berasal dari satu induk dengan posisi yang sama. 
+    Untuk membuat siklus alel dari induk1, kita harus mulai dengan alel pertama dari induk1. 
+    Kemudian lihat alel pada posisi yang sama di induk2 dan pergi ke posisi dengan alel yang sama di Induk1. 
+    Masukkan alel ini ke dalam siklus dan lakukan lagi langkah di atas hingga mencapai pada alel pertama dari induk1. 
+    Letakkan alel-alel dari siklus pada anak pertama pada posisi yang mereka miliki pada induk pertama dan alel-alel yang tersisa dari anak pertama berasal dari induk kedua beserta posisinya. 
+    Proses ini diulangi untuk offspring ke 2 namun diawali dari induk 2 (\cite{Kora}).
+
+  \end{enumerate}	
+  
   \item Mutasi
   
   Mutasi adalah suatu modifikasi informasi gen-gen pada suatu kromosom. Proses mutasi dilakukan dengan pengkodean nilai yaitu memilih sembarang posisi gen pada kromosom, nilai yang ada tersebut kemudian diubah dengan suatu nilai tertentu yang diambil secara acak, memberikan nilai inversi atau menggeser nilai gen pada gen yang terpilih untuk dimutasikan(\cite{JMASIF2649}).

@@ -1,226 +1,257 @@
 \chapter{HASIL DAN PEMBAHASAN}
 \label{chap:hasilpembahasan}
-
 % Ubah bagian-bagian berikut dengan isi dari pengujian dan analisis
 
 Pada penelitian ini dipaparkan hasil pengujian serta analisis dari desain sistem dan implementasi. 
 Pengujian dilakukan untuk mengetahui keberhasilan sistem yang telah dibuat serta untuk mengetahui durasi pembuatan jadwal secara otomatis sehingga dapat ditarik kesimpulan terhadap penelitian tugas akhir ini. 
-Pengujian pada penelitian ini dilakukan dengan menambah kompleksitas penghitungan nilai fitness dari kromosom penjadwalan secara bertahap dan melakukan variasi pada probabilitas mutasi.
-Terdapat 4 constraint yang digunakan pada perhitungan nilai fitness dan terdapat 5 variasi nilai probabilitas mutasi yang digunakan. 
+Pada penelitian ini dilakukan 2 jenis pengujian. 
+Pengujian pertama pada penelitian ini dilakukan dengan menambah kompleksitas penghitungan nilai fitness dari kromosom penjadwalan secara bertahap dan melakukan variasi pada probabilitas mutasi untuk masing-masing peningkatan constrain.
+Terdapat 4 \textit{constraint} yang digunakan pada perhitungan nilai fitness dan terdapat 5 variasi nilai probabilitas mutasi yang digunakan.
+Sedangkan pada pengujian kedua dilakukan penambahan jumah populasi secara bertahap.
 
-\section{Percobaan dengan 1 constraint}
+\section{Pengujian Pengaruh \textit{Constraint} dan Probabilitas Mutasi}
+Pada pengujian ini yang dilakukan adalah meningkatkan kompleksitas perhitungan nilai fitness dengan meningkatkan jumlah \textit{constraint} secara bertahap. 
+Masing-masing peningkatan constrain dilakukan variasi nilai probabilitas mutasi dan dilakukan pengulangan sebanyak 5 kali pengulangan.
+Dari 5 kali pengulangan tersebut, diambil rata-rata waktu penyelesaian untuk masing-masing variasi probabilitas mutasi.
+Terdapat 4 \textit{constraint} dan 5 variasi nilai probabilitas mutasi. Besar populasi yang digunakan pada pengujian ini adalah 2 individu.
+\subsection{Percobaan dengan 1 \textit{Constraint}}
 \label{sec:pengujian 1}
-  Pada pengujian ini yang dilakukan adalah melakukan perhitungan nilai fitness menggunakan 1 constraint yaitu satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu pekan perkuliahan.
+  Pada percobaan ini dilakukan perhitungan nilai fitness menggunakan 1 \textit{constraint} yaitu satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu pekan perkuliahan.
   Kemudian dilakukan variasi nilai probabilitas mutasi dimana masing-masing nilai tersebut dilakukan 5 kali perulangan. 
-  Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel \ref{tab:1 constraint}
-  \begin{longtable}[c]{|c|c|}
-    \caption{Rata-rata waktu proses penjadwalan dengan 1 constraint}
+  Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel~\ref{tab:1 constraint}
+  
+  \begin{longtable}[c]{|c|c|c|}
+    \caption{Rata-rata waktu proses penjadwalan dengan 1 \textit{constraint}}
     \label{tab:1 constraint}\\
     \hline
     \rowcolor[HTML]{C0C0C0} 
-    Probabilitas Mutasi & Rata-rata waktu \\ \hline
-    0.02                & 2m 45s          \\ \hline
-    0.04                & 1m 54s          \\ \hline
-    0.06                & 1m 53s          \\ \hline
-    0.08                & 3m 8s           \\ \hline
-    0.1                 & 4m 14s          \\ \hline
+    Probabilitas Mutasi & Rata-rata waktu & Rata-rata Generasi \\ \hline
+    0.02                & 4m 4s           & 54802               \\ \hline
+    0.04                & 1m 47s          & 25894               \\ \hline
+    0.06                & 1m 21s          & 19087               \\ \hline
+    0.08                & 2m 28s          & 34845               \\ \hline
+    0.1                 & 4m 58s          & 64808               \\ \hline
     \end{longtable}
   
-  Berdasarkan data pada Tabel \ref{tab:1 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
-  Contoh hasil keluaran program pada pengujian ini adalah sebagai berikut:
-  \begin{longtable}[c]{|c|c|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{3.2cm}|}
-    \caption{Hasil Penjadwalan Otomatis dengan 1 Constraint}
+  Berdasarkan data pada Tabel~\ref{tab:1 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
+  Contoh hasil keluaran program pada pengujian ini dapat dilihat pada Tabel~\ref{tab:1} dibawah ini:
+  \begin{small}
+  \begin{longtable}[c]{|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{4.7cm}|>{\centering\arraybackslash}m{4.7cm}|}
+    \caption{Hasil Penjadwalan Otomatis dengan 1 \textit{Constraint}}
     \label{tab:1}\\
     \hline
     \rowcolor[HTML]{C0C0C0} 
-    Hari   & Waktu       & Ruang                  & Matkul                                                              & Dosen                                         \\ \hline
-    Senin  & 07.30-10.00 & A235, Kapasitas: 40    & Desain Dan Rekayasa Sistem B, \linebreak Peserta: 40                & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-    Senin  & 07.30-10.00 & AJ401, Kapasitas: 25   & Rangkaian Listrik A, \linebreak Peserta: 40                         & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-    Senin  & 07.30-10.00 & A108, Kapasitas: 80    & Metode Numerik A, \linebreak Peserta: 40                            & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-    Senin  & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Rangkaian Digital A, \linebreak Peserta: 24                         & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
-    Senin  & 13.30-16.00 & A234, Kapasitas: 36    & Metode Numerik C, \linebreak Peserta: 59                            & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-    Senin  & 13.30-16.00 & B211, Kapasitas: 25    & Desain Dan Rekayasa Sistem A, \linebreak Peserta: 49                & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-    Selasa & 07.30-10.00 & A234, Kapasitas: 36    & Metode Numerik B, \linebreak Peserta: 40                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-    Selasa & 07.30-10.00 & B211, Kapasitas: 25    & Sistem Tertanam A, \linebreak Peserta: 27                           & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-    Selasa & 07.30-10.00 & AJ401, Kapasitas: 25   & Sistem Operasi A, \linebreak Peserta: 25                            & Arief Kurniawan, S.T., M.T.                   \\ \hline
-    Selasa & 10.00-12.30 & A235, Kapasitas: 40    & Aljabar Linear A, \linebreak Peserta: 5                             & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
-    Selasa & 10.00-12.30 & A235, Kapasitas: 40    & Pengantar Robotika A, \linebreak Peserta: 33                        & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-    Selasa & 10.00-12.30 & AJ402, Kapasitas: 25   & Pemrograman Lanjut B, \linebreak Peserta: 39                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-    Selasa & 13.30-16.00 & AJ401, Kapasitas: 25   & Matematika Diskrit A, \linebreak Peserta: 32                        & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-    Selasa & 13.30-16.00 & A234, Kapasitas: 36    & Pemrograman Sistem dan Jaringan A, \linebreak Peserta: 11           & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-    Selasa & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Visi Komputer A, \linebreak Peserta: 16                             & Eko Pramunanto, S.T., M.T.                    \\ \hline
-    Rabu   & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Sistem Mikroprosesor dan Mikrokontroller A, \linebreak Peserta: 26  & Eko Pramunanto, S.T., M.T.                    \\ \hline
-    Rabu   & 07.30-10.00 & A235, Kapasitas: 40    & Probabilitas dan Statistik A, \linebreak Peserta: 28                & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-    Rabu   & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Persamaan Differensial dan Deret A, \linebreak Peserta: 35          & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-    Rabu   & 10.00-12.30 & B211, Kapasitas: 25    & Persepsi Robot A, \linebreak Peserta: 13                            & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-    Rabu   & 10.00-12.30 & A234, Kapasitas: 36    & Arsitektur dan Organisasi Sistem Komputer B, \linebreak Peserta: 27 & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-    Rabu   & 13.30-16.00 & AJ401, Kapasitas: 25   & Sistem Tertanam B, \linebreak Peserta: 24                           & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-    Rabu   & 13.30-16.00 & B211, Kapasitas: 25    & Jaringan Komputer B, \linebreak Peserta: 40                         & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-    Rabu   & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Sistem Manajemen Basis Data A, \linebreak Peserta: 25               & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-    Rabu   & 13.30-16.00 & AJ402, Kapasitas: 25   & Deep Learning untuk Multimedia A, \linebreak Peserta: 30            & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-    Kamis  & 07.30-10.00 & AJ402, Kapasitas: 25   & Rangkaian Listrik B, \linebreak Peserta: 35                         & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-    Kamis  & 07.30-10.00 & A235, Kapasitas: 40    & Matematika Diskrit B, \linebreak Peserta: 59                        & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-    Kamis  & 07.30-10.00 & A234, Kapasitas: 36    & Pemrograman Lanjut A, \linebreak Peserta: 39                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-    Kamis  & 10.00-12.30 & AJ402, Kapasitas: 25   & Desain Pemrograman Game P, \linebreak Peserta: 8                    & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-    Kamis  & 10.00-12.30 & AJ402, Kapasitas: 25   & Sistem Manajemen Basis Data B, \linebreak Peserta: 25               & Muhtadin, S.T., M.T.                          \\ \hline
-    Kamis  & 13.30-16.00 & A108, Kapasitas: 80    & Desain Pemrograman Game A, \linebreak Peserta: 9                    & Muhtadin, S.T., M.T.                          \\ \hline
-    Kamis  & 13.30-16.00 & AJ401, Kapasitas: 25   & Jaringan Komputer A, \linebreak Peserta: 41                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
-    Jumat  & 07.30-10.00 & A108, Kapasitas: 80    & Pengolahan Sinyal Digital A, \linebreak Peserta: 26                 & Eko Pramunanto, S.T., M.T.                    \\ \hline
-    Jumat  & 07.30-10.00 & A235, Kapasitas: 40    & Pengolahan Sinyal Digital B, \linebreak Peserta: 26                 & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-    Jumat  & 07.30-10.00 & A234, Kapasitas: 36    & Sistem Mikroprosesor dan Mikrokontroller B, \linebreak Peserta: 20  & Arief Kurniawan, S.T., M.T.                   \\ \hline
-    Jumat  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Dasar Pemrograman P, \linebreak Peserta: 14                         & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-    Jumat  & 13.30-16.00 & A235, Kapasitas: 40    & Arsitektur dan Organisasi Sistem Komputer A, \linebreak Peserta: 30 & Muhtadin, S.T., M.T.                          \\ \hline
-    Jumat  & 13.30-16.00 & A235, Kapasitas: 40    & Sekuriti Sistem Komputer A, \linebreak Peserta: 33                  & Muhtadin, S.T., M.T.                          \\ \hline
-    Jumat  & 13.30-16.00 & AJ402, Kapasitas: 25   & Sistem Operasi B, \linebreak Peserta: 26                            & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
+    Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+    \endhead
+    Senin  & 07.30-10.00 & A235 / 40                   & Desain Dan Rekayasa Sistem B / 40                & Mochamad Hariadi, S.T., M.Sc.,Ph.D            \\ \hline
+    Senin  & 07.30-10.00 & AJ401 / 25                  & Rangkaian Listrik A / 40                         & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+    Senin  & 07.30-10.00 & A108 / 80                   & Metode Numerik A / 40                            & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+    Senin  & 10.00-12.30 & Pasca 2 / 40                & Rangkaian Digital A / 24                         & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
+    Senin  & 13.30-16.00 & A234 / 36                   & Metode Numerik C / 59                            & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+    Senin  & 13.30-16.00 & B211 / 25                   & Desain Dan Rekayasa Sistem A / 49                & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+    Selasa & 07.30-10.00 & A234 / 36                   & Metode Numerik B / 40                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+    Selasa & 07.30-10.00 & B211 / 25                   & Sistem Tertanam A / 27                           & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+    Selasa & 07.30-10.00 & AJ401 / 25                  & Sistem Operasi A / 25                            & Arief Kurniawan, S.T., M.T.                   \\ \hline
+    Selasa & 10.00-12.30 & A235 / 40                   & Aljabar Linear A / 5                             & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
+    Selasa & 10.00-12.30 & A235 / 40                   & Pengantar Robotika A / 33                        & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+    Selasa & 10.00-12.30 & AJ402 / 25                  & Pemrograman Lanjut B / 39                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+    Selasa & 13.30-16.00 & AJ401 / 25                  & Matematika Diskrit A / 32                        & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+    Selasa & 13.30-16.00 & A234 / 36                   & Pemrograman Sistem dan Jaringan A / 11           & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+    Selasa & 13.30-16.00 & Pasca 2 / 40                & Visi Komputer A / 16                             & Eko Pramunanto, S.T., M.T.                    \\ \hline
+    Rabu   & 07.30-10.00 & Pasca 2 / 40                & Sistem Mikroprosesor dan Mikrokontroller A / 26  & Eko Pramunanto, S.T., M.T.                    \\ \hline
+    Rabu   & 07.30-10.00 & A235 / 40                   & Probabilitas dan Statistik A / 28                & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+    Rabu   & 10.00-12.30 & Pasca 2 / 40                & Persamaan Differensial dan Deret A / 35          & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+    Rabu   & 10.00-12.30 & B211 / 25                   & Persepsi Robot A / 13                            & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+    Rabu   & 10.00-12.30 & A234 / 36                   & Arsitektur dan Organisasi Sistem Komputer B / 27 & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+    Rabu   & 13.30-16.00 & AJ401 / 25                  & Sistem Tertanam B / 24                           & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+    Rabu   & 13.30-16.00 & B211 / 25                   & Jaringan Komputer B / 40                         & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+    Rabu   & 13.30-16.00 & Pasca 2 / 40                & Sistem Manajemen Basis Data A / 25               & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+    Rabu   & 13.30-16.00 & AJ402 / 25                  & Deep Learning untuk Multimedia A / 30            & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+    Kamis  & 07.30-10.00 & AJ402 / 25                  & Rangkaian Listrik B / 35                         & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+    Kamis  & 07.30-10.00 & A235 / 40                   & Matematika Diskrit B / 59                        & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+    Kamis  & 07.30-10.00 & A234 / 36                   & Pemrograman Lanjut A / 39                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+    Kamis  & 10.00-12.30 & AJ402 / 25                  & Desain Pemrograman Game P / 8                    & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+    Kamis  & 10.00-12.30 & AJ402 / 25                  & Sistem Manajemen Basis Data B / 25               & Muhtadin, S.T., M.T.                          \\ \hline
+    Kamis  & 13.30-16.00 & A108 / 80                   & Desain Pemrograman Game A / 9                    & Muhtadin, S.T., M.T.                          \\ \hline
+    Kamis  & 13.30-16.00 & AJ401 / 25                  & Jaringan Komputer A / 41                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
+    Jumat  & 07.30-10.00 & A108 / 80                   & Pengolahan Sinyal Digital A / 26                 & Eko Pramunanto, S.T., M.T.                    \\ \hline
+    Jumat  & 07.30-10.00 & A235 / 40                   & Pengolahan Sinyal Digital B / 26                 & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+    Jumat  & 07.30-10.00 & A234 / 36                   & Sistem Mikroprosesor dan Mikrokontroller B / 20  & Arief Kurniawan, S.T., M.T.                   \\ \hline
+    Jumat  & 13.30-16.00 & Pasca 2 / 40                & Dasar Pemrograman P / 14                         & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+    Jumat  & 13.30-16.00 & A235 / 40                   & Arsitektur dan Organisasi Sistem Komputer A / 30 & Muhtadin, S.T., M.T.                          \\ \hline
+    Jumat  & 13.30-16.00 & A235 / 40                   & Sekuriti Sistem Komputer A / 33                  & Muhtadin, S.T., M.T.                          \\ \hline
+    Jumat  & 13.30-16.00 & AJ402 / 25                  & Sistem Operasi B / 26                            & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
     \end{longtable}
-  Data jadwal yang dihasilkan pada Tabel \ref{tab:1}, masih terdapat ketidaksesuaian berupa satu ruangan dipakai untuk 2 mata kuliah pada satu waktu, jumlah peserta melebihi kapasitas ruangan dan satu dosen mengajar 2 mata kuliah pada satu waktu.
+  \end{small}
+  Data jadwal yang dihasilkan pada Tabel~\ref{tab:1}, masih terdapat ketidaksesuaian berupa satu ruangan dipakai untuk 2 mata kuliah pada satu waktu, jumlah peserta melebihi kapasitas ruangan dan satu dosen mengajar 2 mata kuliah pada satu waktu.
   Oleh sebab itu jadwal yang dihasilkan dari pengujian ini tidak bisa dipakai.
   
-\section{Percobaan dengan 2 constraint}
+\subsection{Percobaan dengan 2 \textit{Constraint}}
 \label{sec:pengujian 2}
-Pada pengujian ini yang dilakukan adalah melakukan perhitungan nilai fitness menggunakan 2 constraint yaitu:
+Pada percobaan ini dilakukan perhitungan perhitungan nilai fitness menggunakan 2 \textit{constraint} yaitu:
 \begin{enumerate}[nolistsep]
   \item Satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu pekan perkuliahan.
   \item Satu dosen hanya bisa mengajar satu kali dalam satu waktu.
 \end{enumerate} 
 Kemudian dilakukan variasi nilai probabilitas mutasi dimana masing-masing nilai tersebut dilakukan 5 kali perulangan. 
-Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel \ref{tab:2 constraint}
-\begin{longtable}[c]{|c|c|}
-  \caption{Rata-rata waktu proses penjadwalan dengan 2 constraint}
+Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel~\ref{tab:2 constraint}
+
+\begin{longtable}[c]{|c|c|c|}
+  \caption{Rata-rata waktu proses penjadwalan dengan 2 \textit{constraint}}
   \label{tab:2 constraint}\\
   \hline
   \rowcolor[HTML]{C0C0C0} 
-  Probabilitas Mutasi & Rata-rata waktu \\ \hline
-  0.02                & 5m 4s           \\ \hline
-  0.04                & 1m 48s          \\ \hline
-  0.06                & 1m 51s          \\ \hline
-  0.08                & 2m 41s          \\ \hline
-  0.1                 & 2m 57s          \\ \hline
+  Probabilitas Mutasi & Rata-rata waktu & Rata-rata Generasi \\ \hline
+  0.02                & 4m 30s          & 49493               \\ \hline
+  0.04                & 2m 2s           & 27551              \\ \hline
+  0.06                & 1m 51s          & 26042               \\ \hline
+  0.08                & 2m 41s          & 28991               \\ \hline
+  0.1                 & 2m 57s          & 30440               \\ \hline
   \end{longtable}
 
-Berdasarkan data pada Tabel \ref{tab:2 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
+Berdasarkan data pada Tabel~\ref{tab:2 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
 Contoh hasil keluaran program pada pengujian ini adalah sebagai berikut:
-\begin{longtable}[c]{|c|c|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{3cm}|}
-  \caption{Hasil Penjadwalan Otomatis dengan 2 Constraints}
+\begin{small}
+\begin{longtable}[c]{|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{4.7cm}|>{\centering\arraybackslash}m{4.7cm}|}
+  \caption{Hasil Penjadwalan Otomatis dengan 2 \textit{Constraint}}
   \label{tab:2}\\
   \hline
   \rowcolor[HTML]{C0C0C0} 
-  Hari   & Waktu       & Ruang                  & Matkul                                                              & Dosen                                         \\ \hline
-  Senin  & 07.30-10.00 & A234, Kapasitas: 36    & Probabilitas dan Statistik A, \linebreak Peserta: 28                & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Senin  & 07.30-10.00 & B211, Kapasitas: 25    & Sistem Manajemen Basis Data A, \linebreak Peserta: 25               & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-  Senin  & 10.00-12.30 & AJ401, Kapasitas: 25   & Jaringan Komputer A, \linebreak Peserta: 41                         & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-  Senin  & 10.00-12.30 & A235, Kapasitas: 40    & Arsitektur dan Organisasi Sistem Komputer A, \linebreak Peserta: 30 & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-  Senin  & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Sistem Mikroprosesor dan Mikrokontroller B, \linebreak Peserta: 20  & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-  Senin  & 13.30-16.00 & B211, Kapasitas: 25    & Jaringan Komputer B, \linebreak Peserta: 40                         & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Senin  & 13.30-16.00 & AJ401, Kapasitas: 25   & Sistem Mikroprosesor dan Mikrokontroller A, \linebreak Peserta: 26  & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-  Senin  & 13.30-16.00 & A108, Kapasitas: 80    & Matematika Diskrit B, \linebreak Peserta: 59                        & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-  Senin  & 13.30-16.00 & AJ401, Kapasitas: 25   & Metode Numerik C, \linebreak Peserta: 59                            & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-  Selasa & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Rangkaian Digital A, \linebreak Peserta: 24                         & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-  Selasa & 07.30-10.00 & A234, Kapasitas: 36    & Pengolahan Sinyal Digital B, \linebreak Peserta: 26                 & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Selasa & 10.00-12.30 & AJ402, Kapasitas: 25   & Desain Dan Rekayasa Sistem B, \linebreak Peserta: 40                & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-  Selasa & 13.30-16.00 & A108, Kapasitas: 80    & Metode Numerik B, \linebreak Peserta: 40                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-  Rabu   & 10.00-12.30 & A234, Kapasitas: 36    & Rangkaian Listrik B, \linebreak Peserta: 35                         & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Rabu   & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Matematika Diskrit A, \linebreak Peserta: 32                        & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Rabu   & 10.00-12.30 & B211, Kapasitas: 25    & Sistem Operasi A, \linebreak Peserta: 25                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-  Rabu   & 10.00-12.30 & B211, Kapasitas: 25    & Sistem Manajemen Basis Data B, \linebreak Peserta: 25               & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-  Rabu   & 13.30-16.00 & AJ401, Kapasitas: 25   & Deep Learning untuk Multimedia A, \linebreak Peserta: 30            & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-  Rabu   & 13.30-16.00 & A234, Kapasitas: 36    & Persepsi Robot A, \linebreak Peserta: 13                            & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Rabu   & 13.30-16.00 & B211, Kapasitas: 25    & Persamaan Differensial dan Deret A, \linebreak Peserta: 35          & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-  Kamis  & 07.30-10.00 & B211, Kapasitas: 25    & Dasar Pemrograman P, \linebreak Peserta: 14                         & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
-  Kamis  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Desain Dan Rekayasa Sistem A, \linebreak Peserta: 49                & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Kamis  & 07.30-10.00 & AJ401, Kapasitas: 25   & Pemrograman Lanjut A, \linebreak Peserta: 39                        & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-  Kamis  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Sistem Operasi B, \linebreak Peserta: 26                            & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-  Kamis  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Pemrograman Lanjut B, \linebreak Peserta: 39                        & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-  Kamis  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Sistem Tertanam B, \linebreak Peserta: 24                           & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-  Kamis  & 07.30-10.00 & A108, Kapasitas: 80    & Arsitektur dan Organisasi Sistem Komputer B, \linebreak Peserta: 27 & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-  Kamis  & 10.00-12.30 & A235, Kapasitas: 40    & Aljabar Linear A, \linebreak Peserta: 5                             & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-  Kamis  & 10.00-12.30 & A108, Kapasitas: 80    & Rangkaian Listrik A, \linebreak Peserta: 40                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
-  Kamis  & 10.00-12.30 & B211, Kapasitas: 25    & Metode Numerik A, \linebreak Peserta: 40                            & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-  Kamis  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Desain Pemrograman Game A, \linebreak Peserta: 9                    & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-  Kamis  & 13.30-16.00 & A234, Kapasitas: 36    & Sekuriti Sistem Komputer A, \linebreak Peserta: 33                  & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Jumat  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Pengolahan Sinyal Digital A, \linebreak Peserta: 26                 & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-  Jumat  & 07.30-10.00 & A234, Kapasitas: 36    & Desain Pemrograman Game P, \linebreak Peserta: 8                    & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-  Jumat  & 07.30-10.00 & A235, Kapasitas: 40    & Visi Komputer A, \linebreak Peserta: 16                             & Eko Pramunanto, S.T., M.T.                    \\ \hline
-  Jumat  & 13.30-16.00 & A235, Kapasitas: 40    & Sistem Tertanam A, \linebreak Peserta: 27                           & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-  Jumat  & 13.30-16.00 & A108, Kapasitas: 80    & Pengantar Robotika A, \linebreak Peserta: 33                        & Eko Pramunanto, S.T., M.T.                    \\ \hline
-  Jumat  & 13.30-16.00 & AJ402, Kapasitas: 25   & Pemrograman Sistem dan Jaringan A, \linebreak Peserta: 11           & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+  Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+  \endfirsthead
+  \hline
+  \rowcolor[HTML]{C0C0C0} 
+  Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+  \endhead
+  Senin  & 07.30-10.00 & A234 / 36    & Probabilitas dan Statistik A / 28                & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Senin  & 07.30-10.00 & B211 / 25    & Sistem Manajemen Basis Data A / 25               & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+  Senin  & 10.00-12.30 & AJ401 / 25   & Jaringan Komputer A / 41                         & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+  Senin  & 10.00-12.30 & A235 / 40    & Arsitektur dan Organisasi Sistem Komputer A / 30 & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+  Senin  & 10.00-12.30 & Pasca 2 / 40 & Sistem Mikroprosesor dan Mikrokontroller B / 20  & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+  Senin  & 13.30-16.00 & B211 / 25    & Jaringan Komputer B / 40                         & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Senin  & 13.30-16.00 & AJ401 / 25   & Sistem Mikroprosesor dan Mikrokontroller A / 26  & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+  Senin  & 13.30-16.00 & A108 / 80    & Matematika Diskrit B / 59                        & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+  Senin  & 13.30-16.00 & AJ401 / 25   & Metode Numerik C / 59                            & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+  Selasa & 07.30-10.00 & Pasca 2 / 40 & Rangkaian Digital A / 24                         & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+  Selasa & 07.30-10.00 & A234 / 36    & Pengolahan Sinyal Digital B / 26                 & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Selasa & 10.00-12.30 & AJ402 / 25   & Desain Dan Rekayasa Sistem B / 40                & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+  Selasa & 13.30-16.00 & A108 / 80    & Metode Numerik B / 40                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+  Rabu   & 10.00-12.30 & A234 / 36    & Rangkaian Listrik B / 35                         & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Rabu   & 10.00-12.30 & Pasca 2 / 40 & Matematika Diskrit A / 32                        & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Rabu   & 10.00-12.30 & B211 / 25    & Sistem Operasi A / 25                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+  Rabu   & 10.00-12.30 & B211 / 25    & Sistem Manajemen Basis Data B / 25               & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+  Rabu   & 13.30-16.00 & AJ401 / 25   & Deep Learning untuk Multimedia A / 30            & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+  Rabu   & 13.30-16.00 & A234 / 36    & Persepsi Robot A / 13                            & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Rabu   & 13.30-16.00 & B211 / 25    & Persamaan Differensial dan Deret A / 35          & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+  Kamis  & 07.30-10.00 & B211 / 25    & Dasar Pemrograman P / 14                         & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
+  Kamis  & 07.30-10.00 & Pasca 2 / 40 & Desain Dan Rekayasa Sistem A / 49                & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Kamis  & 07.30-10.00 & AJ401 / 25   & Pemrograman Lanjut A / 39                        & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+  Kamis  & 07.30-10.00 & Pasca 2 / 40 & Sistem Operasi B / 26                            & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+  Kamis  & 07.30-10.00 & Pasca 2 / 40 & Pemrograman Lanjut B / 39                        & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+  Kamis  & 07.30-10.00 & Pasca 2 / 40 & Sistem Tertanam B / 24                           & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+  Kamis  & 07.30-10.00 & A108 / 80    & Arsitektur dan Organisasi Sistem Komputer B / 27 & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+  Kamis  & 10.00-12.30 & A235 / 40    & Aljabar Linear A / 5                             & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+  Kamis  & 10.00-12.30 & A108 / 80    & Rangkaian Listrik A / 40                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
+  Kamis  & 10.00-12.30 & B211 / 25    & Metode Numerik A / 40                            & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+  Kamis  & 13.30-16.00 & Pasca 2 / 40 & Desain Pemrograman Game A / 9                    & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+  Kamis  & 13.30-16.00 & A234 / 36    & Sekuriti Sistem Komputer A / 33                  & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Jumat  & 07.30-10.00 & Pasca 2 / 40 & Pengolahan Sinyal Digital A / 26                 & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+  Jumat  & 07.30-10.00 & A234 / 36    & Desain Pemrograman Game P / 8                    & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+  Jumat  & 07.30-10.00 & A235 / 40    & Visi Komputer A / 16                             & Eko Pramunanto, S.T., M.T.                    \\ \hline
+  Jumat  & 13.30-16.00 & A235 / 40    & Sistem Tertanam A / 27                           & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+  Jumat  & 13.30-16.00 & A108 / 80    & Pengantar Robotika A / 33                        & Eko Pramunanto, S.T., M.T.                    \\ \hline
+  Jumat  & 13.30-16.00 & AJ402 / 25   & Pemrograman Sistem dan Jaringan A / 11           & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
   \end{longtable}
-Jadwal yang dihasilkan pada Tabel \ref{tab:2} masih memiliki ketidaksesuaian yaitu satu ruangan dipakai untuk 2 perkuliahan dalam satu waktu dan terdapat jumlah peserta perkuliahan yang melebihi kapasitas ruangan, sehingga jadwal yang dihasilkan pada pengujian ini tidak bisa dipakai untuk perkuliahan.  
+\end{small}
+Jadwal yang dihasilkan pada Tabel~\ref{tab:2} masih memiliki ketidaksesuaian yaitu satu ruangan dipakai untuk 2 perkuliahan dalam satu waktu dan terdapat jumlah peserta perkuliahan yang melebihi kapasitas ruangan, sehingga jadwal yang dihasilkan pada pengujian ini tidak bisa dipakai untuk perkuliahan.  
 
-\section{Percobaan dengan 3 constraint}
+\subsection{Percobaan dengan 3 \textit{Constraint}}
 \label{sec:pengujian 3}
-Pada pengujian ini yang dilakukan adalah melakukan perhitungan nilai fitness menggunakan 3 constraint yaitu:
+Pada percobaan ini dilakukan perhitungan perhitungan nilai fitness menggunakan 3 \textit{constraint} yaitu:
 \begin{enumerate}[nolistsep]
   \item Satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu pekan perkuliahan.
   \item Satu dosen hanya bisa mengajar satu kali perkuliahan dalam satu waktu.
   \item Satu ruangan hanya bisa dipakai satu kali perkuliahan dalam satu waktu.
 \end{enumerate} 
 Kemudian dilakukan variasi nilai probabilitas mutasi dimana masing-masing nilai tersebut dilakukan 5 kali perulangan. 
-Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel \ref{tab:3 constraint}
+Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel~\ref{tab:3 constraint}
 
-\begin{longtable}[c]{|c|c|}
-  \caption{Rata-rata waktu proses penjadwalan dengan 3 constraint}
+\begin{longtable}[c]{|c|c|c|}
+  \caption{Rata-rata waktu proses penjadwalan dengan 3 \textit{constraint}}
   \label{tab:3 constraint}\\
   \hline
   \rowcolor[HTML]{C0C0C0} 
-  Probabilitas Mutasi & Rata-rata waktu \\ \hline
-  0.02                & 10m 23s         \\ \hline
-  0.04                & 5m 27s          \\ \hline
-  0.06                & 4m 41s          \\ \hline
-  0.08                & 7m 45s          \\ \hline
-  0.1                 & 9m 3s           \\ \hline
+  Probabilitas Mutasi & Rata-rata waktu & Rata-rata Generasi\\ \hline
+  0.02                & 10m 23s         & 104453            \\ \hline
+  0.04                & 5m 27s          & 47884             \\ \hline
+  0.06                & 4m 41s          & 41602             \\ \hline
+  0.08                & 7m 45s          & 62040             \\ \hline
+  0.1                 & 9m 3s           & 89413             \\ \hline
 \end{longtable}
-Berdasarkan data pada Tabel \ref{tab:3 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
+
+Berdasarkan data pada Tabel~\ref{tab:3 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
 Contoh hasil keluaran program pada pengujian ini adalah sebagai berikut:
-  \begin{longtable}[c]{|c|c|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{3.2cm}|}
-    \caption{Hasil Penjadwalan Otomatis dengan 3 Constraints}
-    \label{tab:3}\\
-    \hline
-    \rowcolor[HTML]{C0C0C0} 
-    Hari   & Waktu       & Ruang                  & Matkul                                                              & Dosen                                         \\ \hline
-    Senin  & 07.30-10.00 & AJ402, Kapasitas: 25   & Rangkaian Listrik A, \linebreak Peserta: 40                         & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-    Senin  & 07.30-10.00 & AJ401, Kapasitas: 25   & Dasar Pemrograman P, \linebreak Peserta: 14                         & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-    Senin  & 07.30-10.00 & A108, Kapasitas: 80    & Matematika Diskrit A, \linebreak Peserta: 32                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-    Senin  & 10.00-12.30 & B211, Kapasitas: 25    & Pemrograman Sistem dan Jaringan A, \linebreak Peserta: 11           & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-    Senin  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Jaringan Komputer B, \linebreak Peserta: 40                         & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-    Senin  & 13.30-16.00 & AJ401, Kapasitas: 25   & Desain Pemrograman Game A, \linebreak Peserta: 9                    & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-    Senin  & 13.30-16.00 & A235, Kapasitas: 40    & Jaringan Komputer A, \linebreak Peserta: 41                         & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-    Selasa & 07.30-10.00 & AJ401, Kapasitas: 25   & Rangkaian Listrik B, \linebreak Peserta: 35                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
-    Selasa & 07.30-10.00 & B211, Kapasitas: 25    & Arsitektur dan Organisasi Sistem Komputer A, \linebreak Peserta: 30 & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-    Selasa & 07.30-10.00 & A108, Kapasitas: 80    & Pengolahan Sinyal Digital A, \linebreak Peserta: 26                 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-    Selasa & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Sistem Tertanam B, \linebreak Peserta: 24                           & Muhtadin, S.T., M.T.                          \\ \hline
-    Selasa & 10.00-12.30 & A234, Kapasitas: 36    & Aljabar Linear A, \linebreak Peserta: 5                             & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-    Selasa & 10.00-12.30 & A108, Kapasitas: 80    & Sistem Operasi A, \linebreak Peserta: 25                            & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-    Selasa & 10.00-12.30 & AJ402, Kapasitas: 25   & Desain Dan Rekayasa Sistem B, \linebreak Peserta: 40                & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-    Selasa & 13.30-16.00 & A234, Kapasitas: 36    & Pengantar Robotika A, \linebreak Peserta: 33                        & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-    Rabu   & 07.30-10.00 & A108, Kapasitas: 80    & Desain Dan Rekayasa Sistem A, \linebreak Peserta: 49                & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-    Rabu   & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Persamaan Differensial dan Deret A, \linebreak Peserta: 35          & Muhtadin, S.T., M.T.                          \\ \hline
-    Rabu   & 07.30-10.00 & AJ401, Kapasitas: 25   & Sekuriti Sistem Komputer A, \linebreak Peserta: 33                  & Arief Kurniawan, S.T., M.T.                   \\ \hline
-    Rabu   & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Sistem Manajemen Basis Data A, \linebreak Peserta: 25               & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-    Rabu   & 10.00-12.30 & A235, Kapasitas: 40    & Sistem Mikroprosesor dan Mikrokontroller A, \linebreak Peserta: 26  & Arief Kurniawan, S.T., M.T.                   \\ \hline
-    Rabu   & 13.30-16.00 & A235, Kapasitas: 40    & Sistem Operasi B, \linebreak Peserta: 26                            & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-    Rabu   & 13.30-16.00 & A108, Kapasitas: 80    & Metode Numerik C, \linebreak Peserta: 59                            & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-    Rabu   & 13.30-16.00 & B211, Kapasitas: 25    & Deep Learning untuk Multimedia A, \linebreak Peserta: 30            & Eko Pramunanto, S.T., M.T.                    \\ \hline
-    Kamis  & 07.30-10.00 & A234, Kapasitas: 36    & Matematika Diskrit B, \linebreak Peserta: 59                        & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-    Kamis  & 07.30-10.00 & B211, Kapasitas: 25    & Arsitektur dan Organisasi Sistem Komputer B, \linebreak Peserta: 27 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-    Kamis  & 07.30-10.00 & A235, Kapasitas: 40    & Sistem Mikroprosesor dan Mikrokontroller B, \linebreak Peserta: 20  & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-    Kamis  & 07.30-10.00 & A108, Kapasitas: 80    & Pemrograman Lanjut B, \linebreak Peserta: 39                        & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-    Kamis  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Metode Numerik A, \linebreak Peserta: 40                            & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-    Kamis  & 07.30-10.00 & AJ402, Kapasitas: 25   & Pemrograman Lanjut A, \linebreak Peserta: 39                        & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-    Kamis  & 10.00-12.30 & B211, Kapasitas: 25    & Desain Pemrograman Game P, \linebreak Peserta: 8                    & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
-    Kamis  & 10.00-12.30 & A234, Kapasitas: 36    & Visi Komputer A, \linebreak Peserta: 16                             & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-    Kamis  & 10.00-12.30 & A235, Kapasitas: 40    & Sistem Manajemen Basis Data B, \linebreak Peserta: 25               & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-    Jumat  & 07.30-10.00 & A235, Kapasitas: 40    & Sistem Tertanam A, \linebreak Peserta: 27                           & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-    Jumat  & 07.30-10.00 & AJ401, Kapasitas: 25   & Pengolahan Sinyal Digital B, \linebreak Peserta: 26                 & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
-    Jumat  & 07.30-10.00 & A234, Kapasitas: 36    & Persepsi Robot A, \linebreak Peserta: 13                            & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-    Jumat  & 13.30-16.00 & AJ401, Kapasitas: 25   & Rangkaian Digital A, \linebreak Peserta: 24                         & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-    Jumat  & 13.30-16.00 & AJ402, Kapasitas: 25   & Probabilitas dan Statistik A, \linebreak Peserta: 28                & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-    Jumat  & 13.30-16.00 & B211, Kapasitas: 25    & Metode Numerik B, \linebreak Peserta: 40                            & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+\begin{small}
+  \begin{longtable}[c]{|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{4.7cm}|>{\centering\arraybackslash}m{4.7cm}|}
+  \caption{Hasil Penjadwalan Otomatis dengan 3 \textit{constraint}}
+  \label{tab:3}\\
+  \hline
+  \rowcolor[HTML]{C0C0C0} 
+  Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+  \endfirsthead
+  \hline
+  \rowcolor[HTML]{C0C0C0} 
+  Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+  \endhead
+    Senin  & 07.30-10.00 & AJ402 / 25   & Rangkaian Listrik A / 40                         & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+    Senin  & 07.30-10.00 & AJ401 / 25   & Dasar Pemrograman P / 14                         & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+    Senin  & 07.30-10.00 & A108 / 80    & Matematika Diskrit A / 32                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
+    Senin  & 10.00-12.30 & B211 / 25    & Pemrograman Sistem dan Jaringan A / 11           & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+    Senin  & 13.30-16.00 & Pasca 2 / 40 & Jaringan Komputer B / 40                         & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+    Senin  & 13.30-16.00 & AJ401 / 25   & Desain Pemrograman Game A / 9                    & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+    Senin  & 13.30-16.00 & A235 / 40    & Jaringan Komputer A / 41                         & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+    Selasa & 07.30-10.00 & AJ401 / 25   & Rangkaian Listrik B / 35                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
+    Selasa & 07.30-10.00 & B211 / 25    & Arsitektur dan Organisasi Sistem Komputer A / 30 & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+    Selasa & 07.30-10.00 & A108 / 80    & Pengolahan Sinyal Digital A / 26                 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+    Selasa & 10.00-12.30 & Pasca 2 / 40 & Sistem Tertanam B / 24                           & Muhtadin, S.T., M.T.                          \\ \hline
+    Selasa & 10.00-12.30 & A234 / 36    & Aljabar Linear A / 5                             & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+    Selasa & 10.00-12.30 & A108 / 80    & Sistem Operasi A / 25                            & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+    Selasa & 10.00-12.30 & AJ402 / 25   & Desain Dan Rekayasa Sistem B / 40                & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+    Selasa & 13.30-16.00 & A234 / 36    & Pengantar Robotika A / 33                        & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+    Rabu   & 07.30-10.00 & A108 / 80    & Desain Dan Rekayasa Sistem A / 49                & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+    Rabu   & 07.30-10.00 & Pasca 2 / 40 & Persamaan Differensial dan Deret A / 35          & Muhtadin, S.T., M.T.                          \\ \hline
+    Rabu   & 07.30-10.00 & AJ401 / 25   & Sekuriti Sistem Komputer A / 33                  & Arief Kurniawan, S.T., M.T.                   \\ \hline
+    Rabu   & 10.00-12.30 & Pasca 2 / 40 & Sistem Manajemen Basis Data A / 25               & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+    Rabu   & 10.00-12.30 & A235 / 40    & Sistem Mikroprosesor dan Mikrokontroller A / 26  & Arief Kurniawan, S.T., M.T.                   \\ \hline
+    Rabu   & 13.30-16.00 & A235 / 40    & Sistem Operasi B / 26                            & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+    Rabu   & 13.30-16.00 & A108 / 80    & Metode Numerik C / 59                            & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+    Rabu   & 13.30-16.00 & B211 / 25    & Deep Learning untuk Multimedia A / 30            & Eko Pramunanto, S.T., M.T.                    \\ \hline
+    Kamis  & 07.30-10.00 & A234 / 36    & Matematika Diskrit B / 59                        & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+    Kamis  & 07.30-10.00 & B211 / 25    & Arsitektur dan Organisasi Sistem Komputer B / 27 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+    Kamis  & 07.30-10.00 & A235 / 40    & Sistem Mikroprosesor dan Mikrokontroller B / 20  & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+    Kamis  & 07.30-10.00 & A108 / 80    & Pemrograman Lanjut B / 39                        & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+    Kamis  & 07.30-10.00 & Pasca 2 / 40 & Metode Numerik A / 40                            & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+    Kamis  & 07.30-10.00 & AJ402 / 25   & Pemrograman Lanjut A / 39                        & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+    Kamis  & 10.00-12.30 & B211 / 25    & Desain Pemrograman Game P / 8                    & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
+    Kamis  & 10.00-12.30 & A234 / 36    & Visi Komputer A / 16                             & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+    Kamis  & 10.00-12.30 & A235 / 40    & Sistem Manajemen Basis Data B / 25               & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+    Jumat  & 07.30-10.00 & A235 / 40    & Sistem Tertanam A / 27                           & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+    Jumat  & 07.30-10.00 & AJ401 / 25   & Pengolahan Sinyal Digital B / 26                 & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
+    Jumat  & 07.30-10.00 & A234 / 36    & Persepsi Robot A / 13                            & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+    Jumat  & 13.30-16.00 & AJ401 / 25   & Rangkaian Digital A / 24                         & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+    Jumat  & 13.30-16.00 & AJ402 / 25   & Probabilitas dan Statistik A / 28                & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+    Jumat  & 13.30-16.00 & B211 / 25    & Metode Numerik B / 40                            & Ir. Hany Boedinugroho, M.T.                   \\ \hline
   \end{longtable}
-Jadwal yang dihasilkan pada Tabel \ref{tab:3} masih memiliki ketidaksesuaian karena terdapat jumlah peserta perkuliahan yang melebihi kapasitas ruangan sehingga jadwal yang dihasilkan pada pengujian ini tidak bisa dipakai untuk perkuliahan.
-\section{Percobaan dengan 4 constraint}
+\end{small}
+Jadwal yang dihasilkan pada Tabel~\ref{tab:3} masih memiliki ketidaksesuaian karena terdapat jumlah peserta perkuliahan yang melebihi kapasitas ruangan sehingga jadwal yang dihasilkan pada pengujian ini tidak bisa dipakai untuk perkuliahan.
+
+\subsection{Percobaan dengan 4 \textit{Constraint}}
 \label{sec:pengujian 4}
-Pada pengujian ini yang dilakukan adalah melakukan perhitungan nilai fitness menggunakan 3 constraint yaitu:
+Pada percobaan ini dilakukan perhitungan nilai fitness menggunakan 3 \textit{constraint} yaitu:
 \begin{enumerate}[nolistsep]
   \item Satu mata kuliah hanya bisa diselenggarakan satu kali dalam satu pekan perkuliahan.
   \item Satu dosen hanya bisa mengajar satu kali perkuliahan dalam satu waktu.
@@ -228,199 +259,148 @@ Pada pengujian ini yang dilakukan adalah melakukan perhitungan nilai fitness men
   \item Jumlah peserta perkuliahan tidak boleh melebihi kapasitas ruangan
 \end{enumerate} 
 Kemudian dilakukan variasi nilai probabilitas mutasi dimana masing-masing nilai tersebut dilakukan 5 kali perulangan. 
-Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel \ref{tab:3 constraint}
+Berdasarkan pengujian, diperoleh rata-rata waktu seperti pada Tabel~\ref{tab:3 constraint}
 
-\begin{longtable}[c]{|c|c|}
-  \caption{Rata-rata waktu proses penjadwalan dengan 4 constraint}
-  \label{tab:4 constaint}\\
+\begin{longtable}[c]{|c|c|c|}
+  \caption{Rata-rata waktu proses penjadwalan dengan 4 \textit{constraint}}
+  \label{tab:4 constraint}\\
   \hline
   \rowcolor[HTML]{C0C0C0} 
-  Probabilitas Mutasi & Rata-rata waktu \\ \hline
-  \endfirsthead
-  %
-  \endhead
-  %
-  0.02                & 1h 12m 29s      \\ \hline
-  0.04                & 38m 41s         \\ \hline
-  0.06                & 38m 27s         \\ \hline
-  0.08                & 38m 56s         \\ \hline
-  0.1                 & 57m 23s         \\ \hline
+  Probabilitas Mutasi & Rata-rata waktu & Rata-rata Generasi \\ \hline
+  0.02                & 1h 12m 29s      & 451003              \\ \hline
+  0.04                & 38m 41s         & 302331              \\ \hline
+  0.06                & 38m 27s         & 300065              \\ \hline
+  0.08                & 38m 56s         & 311802              \\ \hline
+  0.1                 & 57m 23s         & 405739              \\ \hline
   \end{longtable}
 
-\begin{longtable}[c]{|c|c|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{3.2cm}|}
-  \caption{Hasil Penjadwalan Otomatis dengan 4 Constraints}
+Berdasarkan data pada Tabel~\ref{tab:4 constraint}, semakin besar nilai probabilitas mutasi, maka waktu penyelesaian program akan semakin lama, selain itu ketika nilai probabilitas mutasi mendekati 0, waktu penyelesaian program juga semakin lama.
+Berikut ini adalah contoh hasil keluaran program penjadwalan dengan konfigurasi 4 \textit{constraint}:
+\begin{small}
+\begin{longtable}[c]{|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.1cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{4.7cm}|>{\centering\arraybackslash}m{4.7cm}|}
+  \caption{Hasil Penjadwalan Otomatis dengan 4 \textit{constraint}}
   \label{tab:4}\\
   \hline
   \rowcolor[HTML]{C0C0C0} 
-  Hari   & Waktu       & Ruang                  & Matkul                                                              & Dosen                                         \\ \hline
-  Senin  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Visi Komputer A, \linebreak Peserta: 16                             & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Senin  & 07.30-10.00 & A108, Kapasitas: 80    & Sistem Manajemen Basis Data A, \linebreak Peserta: 25               & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-  Senin  & 07.30-10.00 & A235, Kapasitas: 40    & Arsitektur dan Organisasi Sistem Komputer B, \linebreak Peserta: 27 & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-  Senin  & 10.00-12.30 & A235, Kapasitas: 40    & Jaringan Komputer B, \linebreak Peserta: 40                         & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-  Senin  & 10.00-12.30 & Pasca 2, Kapasitas: 40 & Matematika Diskrit A, \linebreak Peserta: 32                        & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Senin  & 13.30-16.00 & A235, Kapasitas: 40    & Rangkaian Listrik A, \linebreak Peserta: 40                         & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Senin  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Sistem Tertanam A, \linebreak Peserta: 27                           & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-  Selasa & 07.30-10.00 & B211, Kapasitas: 25    & Desain Pemrograman Game A, \linebreak Peserta: 9                    & Muhtadin, S.T., M.T.                          \\ \hline
-  Selasa & 07.30-10.00 & A108, Kapasitas: 80    & Desain Dan Rekayasa Sistem A, \linebreak Peserta: 49                & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-  Selasa & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Persamaan Differensial dan Deret A, \linebreak Peserta: 35          & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-  Selasa & 07.30-10.00 & A235, Kapasitas: 40    & Pengantar Robotika A, \linebreak Peserta: 33                        & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-  Selasa & 10.00-12.30 & A234, Kapasitas: 36    & Sistem Mikroprosesor dan Mikrokontroller B, \linebreak Peserta: 20  & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Selasa & 10.00-12.30 & A108, Kapasitas: 80    & Jaringan Komputer A, \linebreak Peserta: 41                         & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-  Selasa & 13.30-16.00 & A235, Kapasitas: 40    & Probabilitas dan Statistik A, \linebreak Peserta: 28                & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Selasa & 13.30-16.00 & A108, Kapasitas: 80    & Matematika Diskrit B, \linebreak Peserta: 59                        & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-  Selasa & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Pengolahan Sinyal Digital B, \linebreak Peserta: 26                 & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-  Rabu   & 07.30-10.00 & A235, Kapasitas: 40    & Arsitektur dan Organisasi Sistem Komputer A, \linebreak Peserta: 30 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-  Rabu   & 10.00-12.30 & A234, Kapasitas: 36    & Sistem Operasi B, \linebreak Peserta: 26                            & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
-  Rabu   & 10.00-12.30 & A108, Kapasitas: 80    & Rangkaian Listrik B, \linebreak Peserta: 35                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
-  Rabu   & 10.00-12.30 & A235, Kapasitas: 40    & Sistem Operasi A, \linebreak Peserta: 25                            & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Rabu   & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Pemrograman Lanjut A, \linebreak Peserta: 39                        & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-  Rabu   & 13.30-16.00 & A108, Kapasitas: 80    & Aljabar Linear A, \linebreak Peserta: 5                             & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-  Rabu   & 13.30-16.00 & A234, Kapasitas: 36    & Deep Learning untuk Multimedia A, \linebreak Peserta: 30            & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-  Kamis  & 07.30-10.00 & A108, Kapasitas: 80    & Sekuriti Sistem Komputer A, \linebreak Peserta: 33                  & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-  Kamis  & 07.30-10.00 & AJ402, Kapasitas: 25   & Sistem Manajemen Basis Data B, \linebreak Peserta: 25               & Arief Kurniawan, S.T., M.T.                   \\ \hline
-  Kamis  & 07.30-10.00 & B211, Kapasitas: 25    & Sistem Operasi A, \linebreak Peserta: 25                            & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Kamis  & 07.30-10.00 & A234, Kapasitas: 36    & Pemrograman Sistem dan Jaringan A, \linebreak Peserta: 11           & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-  Kamis  & 07.30-10.00 & A235, Kapasitas: 40    & Pengolahan Sinyal Digital A, \linebreak Peserta: 26                 & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-  Kamis  & 10.00-12.30 & A234, Kapasitas: 36    & Sistem Tertanam B, \linebreak Peserta: 24                           & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-  Kamis  & 10.00-12.30 & A235, Kapasitas: 40    & Pemrograman Lanjut B, \linebreak Peserta: 39                        & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-  Kamis  & 10.00-12.30 & AJ401, Kapasitas: 25   & Desain Dan Rekayasa Sistem B, \linebreak Peserta: 40                & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-  Kamis  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Sistem Mikroprosesor dan Mikrokontroller A, \linebreak Peserta: 26  & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-  Kamis  & 13.30-16.00 & AJ402, Kapasitas: 25   & Dasar Pemrograman P, \linebreak Peserta: 14                         & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-  Kamis  & 13.30-16.00 & B211, Kapasitas: 25    & Desain Pemrograman Game P, \linebreak Peserta: 8                    & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-  Jumat  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Metode Numerik A, \linebreak Peserta: 40                            & Muhtadin, S.T., M.T.                          \\ \hline
-  Jumat  & 07.30-10.00 & A108, Kapasitas: 80    & Persepsi Robot A, \linebreak Peserta: 13                            & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-  Jumat  & 13.30-16.00 & AJ401, Kapasitas: 25   & Rangkaian Digital A, \linebreak Peserta: 24                         & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
-  Jumat  & 13.30-16.00 & A108, Kapasitas: 80    & Metode Numerik B, \linebreak Peserta: 40                            & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+  Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+  \endfirsthead
+  \hline
+  \rowcolor[HTML]{C0C0C0} 
+  Hari   & Waktu       & Ruang /\linebreak Kapasitas & Matkul / Peserta                                 & Dosen                                         \\ \hline
+  \endhead
+  Senin  & 07.30-10.00 & Pasca 2 / 40 & Visi Komputer A / 16                             & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Senin  & 07.30-10.00 & A108 / 80    & Sistem Manajemen Basis Data A / 25               & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+  Senin  & 07.30-10.00 & A235 / 40    & Arsitektur dan Organisasi Sistem Komputer B / 27 & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
+  Senin  & 10.00-12.30 & A235 / 40    & Jaringan Komputer B / 40                         & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+  Senin  & 10.00-12.30 & Pasca 2 / 40 & Matematika Diskrit A / 32                        & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Senin  & 13.30-16.00 & A235 / 40    & Rangkaian Listrik A / 40                         & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Senin  & 13.30-16.00 & Pasca 2 / 40 & Sistem Tertanam A / 27                           & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+  Selasa & 07.30-10.00 & B211 / 25    & Desain Pemrograman Game A / 9                    & Muhtadin, S.T., M.T.                          \\ \hline
+  Selasa & 07.30-10.00 & A108 / 80    & Desain Dan Rekayasa Sistem A / 49                & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+  Selasa & 07.30-10.00 & Pasca 2 / 40 & Persamaan Differensial dan Deret A / 35          & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+  Selasa & 07.30-10.00 & A235 / 40    & Pengantar Robotika A / 33                        & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+  Selasa & 10.00-12.30 & A234 / 36    & Sistem Mikroprosesor dan Mikrokontroller B / 20  & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Selasa & 10.00-12.30 & A108 / 80    & Jaringan Komputer A / 41                         & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+  Selasa & 13.30-16.00 & A235 / 40    & Probabilitas dan Statistik A / 28                & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Selasa & 13.30-16.00 & A108 / 80    & Matematika Diskrit B / 59                        & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
+  Selasa & 13.30-16.00 & Pasca 2 / 40 & Pengolahan Sinyal Digital B / 26                 & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+  Rabu   & 07.30-10.00 & A235 / 40    & Arsitektur dan Organisasi Sistem Komputer A / 30 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+  Rabu   & 10.00-12.30 & A234 / 36    & Sistem Operasi B / 26                            & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
+  Rabu   & 10.00-12.30 & A108 / 80    & Rangkaian Listrik B / 35                         & Eko Pramunanto, S.T., M.T.                    \\ \hline
+  Rabu   & 10.00-12.30 & A235 / 40    & Sistem Operasi A / 25                            & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Rabu   & 13.30-16.00 & Pasca 2 / 40 & Pemrograman Lanjut A / 39                        & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+  Rabu   & 13.30-16.00 & A108 / 80    & Aljabar Linear A / 5                             & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+  Rabu   & 13.30-16.00 & A234 / 36    & Deep Learning untuk Multimedia A / 30            & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
+  Kamis  & 07.30-10.00 & A108 / 80    & Sekuriti Sistem Komputer A / 33                  & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
+  Kamis  & 07.30-10.00 & AJ402 / 25   & Sistem Manajemen Basis Data B / 25               & Arief Kurniawan, S.T., M.T.                   \\ \hline
+  Kamis  & 07.30-10.00 & B211 / 25    & Sistem Operasi A / 25                            & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Kamis  & 07.30-10.00 & A234 / 36    & Pemrograman Sistem dan Jaringan A / 11           & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+  Kamis  & 07.30-10.00 & A235 / 40    & Pengolahan Sinyal Digital A / 26                 & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
+  Kamis  & 10.00-12.30 & A234 / 36    & Sistem Tertanam B / 24                           & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
+  Kamis  & 10.00-12.30 & A235 / 40    & Pemrograman Lanjut B / 39                        & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
+  Kamis  & 10.00-12.30 & AJ401 / 25   & Desain Dan Rekayasa Sistem B / 40                & Ir. Hany Boedinugroho, M.T.                   \\ \hline
+  Kamis  & 13.30-16.00 & Pasca 2 / 40 & Sistem Mikroprosesor dan Mikrokontroller A / 26  & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+  Kamis  & 13.30-16.00 & AJ402 / 25   & Dasar Pemrograman P / 14                         & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
+  Kamis  & 13.30-16.00 & B211 / 25    & Desain Pemrograman Game P / 8                    & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
+  Jumat  & 07.30-10.00 & Pasca 2 / 40 & Metode Numerik A / 40                            & Muhtadin, S.T., M.T.                          \\ \hline
+  Jumat  & 07.30-10.00 & A108 / 80    & Persepsi Robot A / 13                            & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
+  Jumat  & 13.30-16.00 & AJ401 / 25   & Rangkaian Digital A / 24                         & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
+  Jumat  & 13.30-16.00 & A108 / 80    & Metode Numerik B / 40                            & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
 \end{longtable}
+\end{small}
 
-% \section{Hasil Penelitian}
-% \label{sec:hasil penelitian}
-% Sistem yang sudah dibuat mampu menghasilkan individu yang memenuhi batasan-batasan yang telah ditentukan sebelumnya dan individu terbaik dapat menghasilkan nilai fitness 1.00. Nilai fitness 1.00 berarti tidak ada batasan yang dilanggar. Contoh hasil keluaran program penjadwalan otomatis ini adalah sebagai berikut:
- 
-% % \begin{lstlisting}[language=Python,caption={Output penjadwalan otomatis}]
-% %   Generation:  105831
-% %   3
-% %   Mutate
-% %   Fitness a: 1.0
-% %   Fitness b: 1.0
-% %   Chromosome terbaik: 
-% %   [[10, 2, 3, 1], [9, 26, 4, 1], [17, 9, 5, 1], [11, 5, 2, 3], [7, 18, 3, 3], [6, 12, 5, 3], [10, 25, 3, 4], [15, 32, 4, 4], [12, 28, 5, 4], [2, 35, 2, 5], [3, 16, 4, 5], [9, 10, 6, 5], [9, 6, 7, 6], [14, 1, 1, 6], [17, 14, 3, 6], [2, 4, 2, 6], [10, 27, 4, 6], [13, 37, 1, 7], [4, 33, 7, 7], [5, 22, 5, 7], [1, 11, 4, 7], [11, 21, 2, 8], [7, 13, 4, 8], [3, 30, 7, 8], [2, 24, 5, 9], [9, 29, 4, 10], [17, 20, 4, 11], [5, 7, 6, 11], [16, 17, 3, 12], [11, 38, 6, 12], [4, 3, 5, 12], [2, 8, 4, 12], [6, 15, 4, 13], [11, 34, 2, 14], [3, 36, 4, 14], [14, 31, 7, 14], [13, 19, 6, 14], [2, 23, 3, 14]]
-% % \end{lstlisting}
-% \begin{longtable}[c]{|c|c|c|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3cm}|}
-%   \caption{Hasil Penjadwalan Otomatis}
-%   \label{tab:jadwal}\\
-%   \hline
-%   Hari   & Waktu       & Ruang                  & Matkul                                                              & Dosen                                         \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Senin  & 07.30-10.00 & A235, Kapasitas: 40    & Aljabar Linear A, \linebreak Peserta: 5                             & Muhtadin, S.T., M.T.                          \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Senin  & 07.30-10.00 & A108, Kapasitas: 80    & Rangkaian Digital A, \linebreak Peserta: 24                         & Arief Kurniawan, S.T., M.T.                   \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Senin  & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Desain Dan Rekayasa Sistem B, \linebreak Peserta: 40                & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Senin  & 13.30-16.00 & A234, Kapasitas: 36    & Deep Learning untuk Multimedia A, \linebreak Peserta: 30            & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Senin  & 13.30-16.00 & A235, Kapasitas: 40    & Pemrograman Lanjut B, \linebreak Peserta: 39                        & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Senin  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Matematika Diskrit A, \linebreak Peserta: 32                        & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-%   Selasa & 07.30-10.00 & A235, Kapasitas: 40    & Probabilitas dan Statistik A, \linebreak Peserta: 28                & Muhtadin, S.T., M.T.                          \\ \hline
-%   Selasa & 07.30-10.00 & A108, Kapasitas: 80    & Sistem Mikroprosesor dan Mikrokontroller A, \linebreak Peserta: 26  & Ahmad Zaini, S.T., M.Sc.                      \\ \hline
-%   Selasa & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Rangkaian Listrik B, \linebreak Peserta: 35                         & Mochamad Hariadi, S.T.,M.Sc.,Ph.D             \\ \hline
-%   Selasa & 10.00-12.30 & A234, Kapasitas: 36    & Sistem Operasi B, \linebreak Peserta: 26                            & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-%   Selasa & 10.00-12.30 & A108, Kapasitas: 80    & Metode Numerik C, \linebreak Peserta: 59                            & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
-%   Selasa & 10.00-12.30 & AJ401, Kapasitas: 25   & Jaringan Komputer A, \linebreak Peserta: 41                         & Arief Kurniawan, S.T., M.T.                   \\ \hline
-%   Selasa & 13.30-16.00 & AJ402, Kapasitas: 25   & Desain Pemrograman Game A, \linebreak Peserta: 9                    & Arief Kurniawan, S.T., M.T.                   \\ \hline
-%   Selasa & 13.30-16.00 & B211, Kapasitas: 25    & Dasar Pemrograman P, \linebreak Peserta: 14                         & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-%   Selasa & 13.30-16.00 & A235, Kapasitas: 40    & Metode Numerik A, \linebreak Peserta: 40                            & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-%   Selasa & 13.30-16.00 & A234, Kapasitas: 36    & Arsitektur dan Organisasi Sistem Komputer B, \linebreak Peserta: 27 & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-%   Selasa & 13.30-16.00 & A108, Kapasitas: 80    & Rangkaian Listrik A, \linebreak Peserta: 40                         & Muhtadin, S.T., M.T.                          \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 07.30-10.00 & B211, Kapasitas: 25    & Sistem Tertanam B, \linebreak Peserta: 24                           & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 07.30-10.00 & AJ402, Kapasitas: 25   & Sistem Mikroprosesor dan Mikrokontroller B, \linebreak Peserta: 20  & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 07.30-10.00 & Pasca 2, Kapasitas: 40 & Pengolahan Sinyal Digital B, \linebreak Peserta: 26                 & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 07.30-10.00 & A108, Kapasitas: 80    & Jaringan Komputer B, \linebreak Peserta: 40                         & Dr. Eko Mulyanto Yuniarno, S.T.,M.T.          \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 10.00-12.30 & A234, Kapasitas: 36    & Pengolahan Sinyal Digital A, \linebreak Peserta: 26                 & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 10.00-12.30 & A108, Kapasitas: 80    & Matematika Diskrit B, \linebreak Peserta: 59                        & Dr. Surya Sumpeno, S.T.,M.Sc.                 \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 10.00-12.30 & AJ402, Kapasitas: 25   & Sistem Manajemen Basis Data A, \linebreak Peserta: 25               & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Rabu   & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Persepsi Robot A, \linebreak Peserta: 13                            & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-%   Kamis  & 07.30-10.00 & A108, Kapasitas: 80    & Sekuriti Sistem Komputer A, \linebreak Peserta: 33                  & Arief Kurniawan, S.T., M.T.                   \\ \hline
-%   Kamis  & 10.00-12.30 & A108, Kapasitas: 80    & Pengantar Robotika A, \linebreak Peserta: 33                        & Dion Hayu Fandiantoro, S.T., M.Eng.           \\ \hline
-%   Kamis  & 10.00-12.30 & AJ401, Kapasitas: 25   & Desain Pemrograman Game P, \linebreak Peserta: 8                    & Prof. Dr. Ir. Yoyon Kusnendar Suprapto, M.Sc. \\ \hline
-%   Kamis  & 13.30-16.00 & A235, Kapasitas: 40    & Pemrograman Lanjut A, \linebreak Peserta: 39                        & Reza Fuad Rachmadi, S.T.,M.T.,Ph.D            \\ \hline
-%   Kamis  & 13.30-16.00 & AJ401, Kapasitas: 25   & Visi Komputer A, \linebreak Peserta: 16                             & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-%   Kamis  & 13.30-16.00 & Pasca 2, Kapasitas: 40 & Arsitektur dan Organisasi Sistem Komputer A, \linebreak Peserta: 30 & Ir. Hany Boedinugroho, M.T.                   \\ \hline
-%   Kamis  & 13.30-16.00 & A108, Kapasitas: 80    & Desain Dan Rekayasa Sistem A, \linebreak Peserta: 49                & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Jumat  & 07.30-10.00 & A108, Kapasitas: 80    & Metode Numerik B, \linebreak Peserta: 40                            & Prof. Dr. Ir. Mauridhi Hery Purnomo, M.Eng.   \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Jumat  & 13.30-16.00 & A234, Kapasitas: 36    & Sistem Operasi A, \linebreak Peserta: 25                            & Atar Fuady Babgei, S.T., M.Sc.                \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Jumat  & 13.30-16.00 & A108, Kapasitas: 80    & Sistem Tertanam A, \linebreak Peserta: 27                           & Dr. I Ketut Eddy Purnama, S.T.,M.T.           \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Jumat  & 13.30-16.00 & AJ402, Kapasitas: 25   & Sistem Manajemen Basis Data B, \linebreak Peserta: 25               & Susi Juniastuti, S.T.,M.Eng.                  \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Jumat  & 13.30-16.00 & AJ401, Kapasitas: 25   & Pemrograman Sistem dan Jaringan A, \linebreak Peserta: 11           & Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.   \\ \hline
-%   \rowcolor[HTML]{DAE8FC} 
-%   Jumat  & 13.30-16.00 & A235, Kapasitas: 40    & Persamaan Differensial dan Deret A, \linebreak Peserta: 35          & Dr. Diah Puspito Wulandari, S.T.,M.Sc.        \\ \hline
-% \end{longtable}
-% Hasil keluaran program diatas merupakan hasil keluaran dari percobaan penjadwalan otomatis yang memperhatikan kapasitas ruangan dan jumlah peserta tiap mata kuliah dan menggunakan probabilitasan percobaan yang memperhatikan probabilitasis mutasi sebesar 0.05. Percobaan ini memakan waktu 14 menit 52 detik.
+Jadwal pada Tabel~\ref{tab:4} telah memenuhi semua \textit{constraint} yang ada. 
+Namun jadwal yang dihasilkan pada percobaan ini, semua dosen dianggap memiliki kompetensi yang sama.
 
-% Terdapat dua percobaan yang dilakukan dalam sistem penjadwalan otomatis ini. Percobaan pertama yaitu tanpa memperhatikan kapasitas kelas dan jumlah perserta tiap mata kuliah, dan percobaan kedua dengan memperhatikan kapasitas ruang kelas dan jumlah perserta tiap mata kuliah.
-% Masing-masing percobaan dilakukan dengan memvariasikan probabilitas mutasi yaitu dengan nilai 0.04, 0.05, dan 0.06.
-% Masing-masing percobaan dilakukan dengan 5 kali \emph{loop} pada konfigurasi yang sama. 
-% Hasil percobaan yang telah dilakukan dapat dilihat pada tabel dibawah ini:
-% \begin{longtable}{|c|c|}
-%   \caption{Percobaan tanpa memperhatikan kapasitas \linebreak ruang dan jumlah peserta mata kuliah}
-%   \label{tab:tanpaKapasitas}\\
-%   \hline
-%   \rowcolor[HTML]{C0C0C0} 
-% {\color[HTML]{000000} \textbf{Probabilitas Mutasi}} & {\color[HTML]{000000} \textbf{Rata-Rata Waktu}} \\ \hline
-% 0.04                                                & 6m 46s                                           \\ \hline
-% 0.05                                                & 5m 38s                                           \\ \hline
-% 0.06                                                & 4m 54s                                           \\ \hline
-% \end{longtable}
+% \section{Pengujian dengan Perubahan Data}
+% \label{sec:Perubahan Data}
+% Pada pengujian ini dilakukan perubahan data berupa penambahan jumlah ruangan
 
-% \begin{longtable}{|c|c|}
-%   \caption{Percobaan dengan memperhatikan kapasitas \linebreak ruang dan jumlah peserta mata kuliah}
-%   \label{tab:denganKapasitas}\\
-%   \hline
-%   \rowcolor[HTML]{C0C0C0} 
-% {\color[HTML]{000000} \textbf{Probabilitas Mutasi}} & {\color[HTML]{000000} \textbf{Rata-Rata Waktu}} \\ \hline
-% 0.04                                                & 39m 43s                                         \\ \hline
-% 0.05                                                & 14m 53s                                         \\ \hline
-% 0.06                                                & 23m 18s                                         \\ \hline
-% \end{longtable}
+\section{Pengujian Pengaruh Besar Populasi}
+\label{sec:populasi}
+Pada pengujian ini yang dilakukan adalah meningkatkan jumlah individu pada populasi untuk melihat pengaruhnya terhadap kecepatan penyelesaian program dan jumlah generasi yang diperlukan.
+Jumlah individu yang digunakan pada pengujian ini yaitu 2, 5, 10, 15, 20, 25, 30, 35, 40, 45, dan 50 populasi. 
+Constraint yang digunakan pada pengujian ini hanya 1 yaitu satu mata kuliah hanya bisa dilaksanakan satu kali dalam satu pekan perkuliahan dan nilai probabilitas mutasi sebesar 0.06.
+Berdasarkan pengujian yang dilakukan, diperoleh data seperti pada Tabel~\ref{tab:populasi} di bawah ini:
 
+\begin{longtable}[c]{|c|c|c|}
+  \caption{Pengaruh Besar Populasi Terhadap Durasi Penyelesaian Program}
+  \label{tab:populasi}\\
+  \hline
+  \rowcolor[HTML]{9B9B9B} 
+  Jumlah Individu & Waktu   & Generasi \\ \hline
+  \endfirsthead
+  \hline
+  Jumlah Individu & Waktu   & Generasi \\ \hline
+  \endhead
+  %
+  2               & 1m 42s  & 33411     \\ \hline
+  5               & 2m 30s  & 33985    \\ \hline
+  10              & 5m 12s  & 56943    \\ \hline
+  15              & 10m 54s & 103969   \\ \hline
+  20              & 9m      & 75289    \\ \hline
+  25              & 6m 22s  & 48597    \\ \hline
+  30              & 16m 4s  & 126662   \\ \hline
+  35              & 2m 32s  & 21188    \\ \hline
+  40              & 3m 42s  & 35224    \\ \hline
+  45              & 1m 16s  & 11265    \\ \hline
+  50              & 1m 32s  & 15782    \\ \hline
+  \end{longtable}
 
-% % Pengujian dilakukan dengan memvariasikan nilai probabilitas mutasi yang kemudian diperoleh rataan waktu untuk menyelesaikan proses penjadwalan. 
-% % Tabel rata-rata waktu proses penjadwalan adalah sebagai berikut.
-% % \begin{longtable}{|c|c|}
-% %   \caption{Hasil Percobaan Variasi Probabilitas Mutasi}
-% %   \label{tab:variasiMutasi}\\
-% %   \hline
-% %   \rowcolor[HTML]{C0C0C0} 
-% %   {\color[HTML]{000000} \textbf{Probabilitas Mutasi}} & {\color[HTML]{000000} \textbf{Rata-Rata Waktu}} \\ \hline
-% %   0.04                                                & 39m 43s                                         \\ \hline
-% %   0.05                                                & 14m 53s                                         \\ \hline
-% %   0.06                                                & 23m 18s                                         \\ \hline
-% % \end{longtable}
-% \section{Pembahasan}
-% \label{sec:Pembahasan}
+Berdasarkan data yang diperoleh pada Tabel~\ref{tab:populasi}, jumlah individu pada populasi mempengaruhi durasi penyelesaian program. 
+Penyelesaian tercepat diperoleh pada 45 individu, sedangkan yang terlama pada 30 individu.
+\section{Pembahasan}
+\label{sec:Pembahasan}
 
+Dari pengujian yang telah dilakukan dapat diketahui bahwa semakin banyak batasan-batasan yang diberikan dalam proses algoritma genetika, maka kompleksitas dari proses \linebreak perhitungan evaluasi fitness juga akan semakin rumit. 
+Kerumitan proses perhitungan ini tentu akan menambah durasi dari proses algoritma genetika itu sendiri. 
+Hal ini dapat dilihat dari \linebreak peningkatan rata-rata waktu penyelesaian pada Tabel~\ref{tab:1}, Tabel~\ref{tab:2}, Tabel~\ref{tab:3}, dan Tabel~\ref{tab:4}.
+Peningkatan waktu penyelesaian dari 1 \textit{constraint} ke 2 \textit{constraint} sebesar 34.4\%, dari 2 \linebreak \textit{constraint} ke 3 \textit{constraint} sebesar 166.071\%, dan dari 3 \textit{constraint} ke 4 \textit{constraint} sebesar 560.179\%.
+
+Selain kompleksitas perhitungan evaluasi fitness dari satu individu, penentuan probabilitas mutasi juga sangat berpengaruh terhadap durasi proses algoritma genetika. 
+Probabilitas mutasi dalam sebuah proses algoritma genetika tidak boleh terlalu besar, karena mengakibatkan hilangnya kemiripan antara individu baru dengan individu induknya. 
+Sedangkan jika probabilitas mutasi bernilai terlalu kecil, maka durasi untuk memperoleh solusi berupa individu terbaik, akan memakan waktu yang sangat lama dan membuat proses algorima genetika dari penjadwalan otomatis ini menjadi tidak optimal.
+Data yang diperoleh pada Tabel~\ref{tab:1 constraint}, Tabel~\ref{tab:2 constraint}, Tabel~\ref{tab:3 constraint}, dan Tabel~\ref{tab:4 constraint} menunjukkan bahwa proses algoritrma genetika dengan konfigurasi nilai probabilitas mutasi 0.06 memiliki rata-raata waktu penyelesaian program yang paling cepat pada semua variasi jumlah \textit{constraint} dengan rata-rata waktu 11m 35s, 
+dan konfigurasi nilai probabilitas mutasi 0.02 memiliki rata-raata waktu penyelesaian program yang paling lama pada semua variasi jumlah \textit{constraint} dengan rata-rata waktu 22m 51s. 
+Jadwal yang dihasilkan oleh program, terutama pada konfigurasi 4 \textit{constraint} (Tabel~\ref{tab:4}) menunjukkan bahwa program mampu menghasilkan jadwal yang sesuai dengan \textit{constraint} yang ditentukan. 
+Jumlah peserta pada masing-masing kelas tidak ada yang melebihi kapasitas ruangan. 
+Setiap mata kuliah juga hanya diselenggarakan satu kali dalam satu pekan perkuliahan.
+Namun pada program ini, setiap dosen dianggap memiliki kompetensi yang sama dan hanya memperhatikan bahwa seorang dosen hanya bisa mengajar satu kali dalam satu waktu. 
+
+Besar populasi juga mempengaruhi durasi proses algoritma genetika. 
+Berdasarkan data pada Tabel~\ref{tab:populasi} durasi tercepat diperoleh pada 45 individu dengan waktu 1m 16ss dan 11265 generasi.
+Sedangkan durasi terlama pada 35 individu dengan waktu 16m 4s dan 126662 generasi.
+Dari data tersebut, dapat diketahui pula bahwa meskipun selisih durasi penyelesaian pada jumlah individu 2 dan 50 tidak terlalu besar.
+Namun jumlah generasi pada 2 individu 2 kali lebih banyak daripada 50 individu. 
+Hal ini dapat terjadi dikarenakan proses 1 kali iterasi pada 50 individu cenderung lebih lama daripada 1 kali iterasi pada 2 individu.
+Hal ini menunjukkan bahwa semakin banyak jumlah individu dalam suatu populasi, menyebabkan rasio generasi dibandingkan waktu penyelesaian menjadi semakin kecil.
 % Dari pengujian yang telah dilakukan dapat diketahui bahwa semakin banyak batasan-batasan yang diberikan dalam proses algoritma genetika, maka kompleksitas dari proses perhitungan evaluasi fitness juga akan semakin rumit. 
-% Kerumitan proses perhitungan ini tentu akan menambah durasi dari proses algoritma genetika itu sendiri. Hal ini dapat dilihat dari perbedaan waktu antara Tabel \ref{tab:tanpaKapasitas} dengan Tabel \ref{tab:denganKapasitas}.
+% Kerumitan proses perhitungan ini tentu akan menambah durasi dari proses algoritma genetika itu sendiri. Hal ini dapat dilihat dari perbedaan waktu antara Tabel~\ref{tab:tanpaKapasitas} dengan Tabel~\ref{tab:denganKapasitas}.
 
 % Selain kompleksitas perhitungan evaluasi fitness dari satu individu, penentuan probabilitas mutasi juga sangat berpengaruh terhadap durasi proses algoritma genetika. Probabilitas \linebreak mutasi dalam sebuah proses algoritma genetika tidak boleh terlalu besar, karena mengakibatkan hilangnya kemiripan antara individu baru dengan individu induknya. 
 % Sedangkan jika probabilitas mutasi bernilai terlalu kecil, maka durasi untuk memperoleh solusi berupa individu terbaik, akan memakan waktu yang sangat lama dan membuat proses algorima genetika dari penjadwalan otomatis ini menjadi tidak optimal. 
 
-% Data yang diperoleh pada Tabel \ref{tab:tanpaKapasitas} menunjukkan bahwa probabilitas mutasi 0.06 memiliki rata-rata durasi yang paling singkat yaitu dengan waktu 4 menit 54 detik. Sedangkan data pada Tabel \ref{tab:denganKapasitas} menunjukkan bahwa probabilitas mutasi 0.05 memiliki rata-rata durasi yang paling singkat yakni dengan waktu 14 menit 53 detik. 
+% Data yang diperoleh pada Tabel~\ref{tab:tanpaKapasitas} menunjukkan bahwa probabilitas mutasi 0.06 memiliki rata-rata durasi yang paling singkat yaitu dengan waktu 4 menit 54 detik. Sedangkan data pada Tabel~\ref{tab:denganKapasitas} menunjukkan bahwa probabilitas mutasi 0.05 memiliki rata-rata durasi yang paling singkat yakni dengan waktu 14 menit 53 detik. 
 % % Contoh pembuatan tabel
 % % \begin{longtable}{|c|c|c|}
 % %   \caption{Hasil Pengukuran Energi dan Kecepatan}

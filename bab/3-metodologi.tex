@@ -63,6 +63,11 @@ Jika terdapat individu yang memenuhi kriteria penghentian, individu tersebut dij
   \hline
   \rowcolor[HTML]{D0CECE} 
   No. & Mata Kuliah & Peserta \\ \hline
+  \endfirsthead
+  \hline
+  \rowcolor[HTML]{D0CECE} 
+  No. & Mata Kuliah & Peserta \\ \hline
+  \endhead
   1  & Aljabar Linear - A                            & 5  \\
   2  & Arsitektur dan Organisasi Sistem Komputer - A & 30 \\
   3  & Arsitektur dan Organisasi Sistem Komputer - B & 27 \\
@@ -110,6 +115,11 @@ Jika terdapat individu yang memenuhi kriteria penghentian, individu tersebut dij
   \hline
   \rowcolor[HTML]{D0CECE} 
   No. & Ruangan & Kapasitas \\ \hline
+  \endfirsthead
+  \hline
+  \rowcolor[HTML]{D0CECE} 
+  No. & Ruangan & Kapasitas \\ \hline
+  \endhead
   1   & A108                                                 & 80                                                     \\ 
   2   & A234                                                 & 36                                                     \\ 
   3   & A235                                                 & 40                                                     \\ 
@@ -184,11 +194,11 @@ Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kulia
   
   \begin{equation}
     \label{eq:fitness2}
-    \mathbf{Fitness} = \frac{1}{(1 + (F1 + F2 + \cdot \cdot \cdot +  Fn))}\; 
+    \mathbf{Fitness} = \frac{1}{(1 + (F1 + F2 + \cdot \cdot \cdot +  Fn)^2)}\; 
   \end{equation}\\
   Keterangan:\\
   Fn = Banyaknya Konflik\\
-  n  = Batasan ke-n\\
+  n  = Batasan ke-n
 
   Fungsi \ref{eq:fitness2} akan menghitung banyaknya konflik yang ada pada satu individu. Konflik ini berupa pelanggaran pada batasan yang telah ditentukan sebelumnya.
   Batasan-batasan tersebut antara lain:
@@ -198,7 +208,8 @@ Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kulia
     \item Satu dosen hanya bisa mengajar satu kali dalam satu waktu
     \item Jumlah peserta perkuliahan tidak boleh melebihi kapasitas ruangan
   \end{enumerate} 
- Pada proses penghitungan konflik, nilai 1 ditambahkan untuk menghindari hasil tak hingga ketika tidak ada pelanggaran sama sekali. 
+ Pada proses penghitungan konflik, jumlah konflik dikuadratkan untuk mempermudah proses pemilihan individu terbaik pada proses evaluasi. 
+ Nilai 1 juga ditambahkan pada jumlah konflik untuk menghindari hasil tak hingga ketika tidak ada pelanggaran sama sekali. 
  Semakin besar nilai fitness yang dihasilkan, maka semakin baik individu tersebut dan semakin cocok dengan hasil penjadwalan yang diharapkan. 
 \subsection{Pemilihan Individu Induk}
   
@@ -226,7 +237,8 @@ Panjang kromosom untuk masing-masing individu sesuai dengan banyaknya mata kulia
 \subsection{\emph{Crossover}}
   
 Crossover atau pindah silang adalah salah satu komponen algoritma genetika yang \linebreak berfungsi untuk mendapatkan solusi dengan melakukan pindah silang kromosom-kromosom dari dua buah individu yang biasa disebut \emph{parent}. 
-Proses ini akan menghasilkan 2 individu baru yang disebut dengan \emph{child}. Proses \emph{crossover} dilakukan dengan skema sesuai gambar dibawah ini:
+Proses ini akan menghasilkan 2 individu baru yang disebut dengan \emph{child}. 
+Proses \emph{crossover} dilakukan dengan skema sesuai gambar dibawah ini:
 % \begin{lstlisting}[
 %   language=Python,
 %   caption={Fungsi crossover},
@@ -261,32 +273,38 @@ Kromosom yang berada diantara 2 titik tersebut, dipindahkan antara satu induk de
   Mutasi merupakan proses dalam algoritma genetika yang bertujuan untuk mengubah \linebreak isi gen dalam sebuah kromosom secara acak. 
   Tidak semua individu baru hasil crossover \linebreak mengalami proses mutasi. 
   Individu-individu baru akan mengalami mutasi atau tidak, \linebreak ditentukan oleh probabilitas mutasi dari proses algoritma genetika yang telah ditentukan sebelumnya. 
-  Proses mutasi dilakukan dengan program berikut ini:
+  Proses mutasi dilakukan dengan program~\ref{lst:mutasi} berikut ini:
   \begin{lstlisting}[
     language=Python,
     caption={Fungsi mutasi},
     label={lst:mutasi},
     ]
-    def gA(a,b,rate):
-      generation = 0
-      score = 0.00
-      while True:
-        if generation == 200000 or score == 1.00:
-          
-          break
-        else:
-          print("Generation: ", generation)
-          c,d = crossover(a,b)
-          e,f = mutate(c,d,rate)
-          a,b,fit = selection(a,b,c,d,e,f)
-          
-          print("Fitness a:", fitness(a))
-          print("Fitness b:", fitness(b))
-          print("\n")
-          score = fit
-          generation = generation+1
+    def mutate(a,b, mut_rate):
+      n = len(a) + len(b)
+      total_mutation = int(abs(mut_rate * n))
+      print (total_mutation)
 
-      return a    
+      if round(random.random(), 3) < mut_rate:
+        print("Mutate\n")
+
+        for i in range (total_mutation):
+
+          c = [random.randint(1, len(Dosen.dosen)),
+            random.randint(1, len(Matkul.matkul)),
+            random.randint(1, len(Ruang.ruang)),
+            random.randint(1, len(Waktu.waktu))]
+
+          x = random.randint(0,n)
+
+          if x <= (len(a)-1) :
+            a[x] = c
+          else :
+            b[x-len(b)-1] = c
+
+      else:
+        print("Doesn't mutate\n")
+
+      return a,b  
   \end{lstlisting}
   Untuk menentukan proses mutasi berjalan atau tidak, dilakukan dengan cara membangkitkan angka secara acak antara 0 hingga 1. 
   Jika angka yang dibangkitkan memiliki nilai dibawah probabilitas mutasi, maka proses mutasi akan terjadi.
@@ -305,7 +323,7 @@ Kromosom yang berada diantara 2 titik tersebut, dipindahkan antara satu induk de
   
   Proses algoritma genetika hanya akan berhenti jika telah memenuhi kriteria penghentian yang telah ditentukan sebelumnya. 
   Kriteria penghentian ini dapat berupa nilai fitness tertentu, atau jumlah iterasi tertentu. 
-  Jika nilai fitness telah terpenuhi atau jumlah iterasi telah terlewati, maka proses algoritma genetika akan berhenti.
+  Jika nilai fitness telah terpenuhi atau jumlah iterasi telah terlewati, maka proses algoritma genetika akan berhenti dan program akan mengeluarkan individu terbaik.
 
 \section{Bahan dan Peralatan yang Digunakan}
 Dalam penelitian ini akan digunakan beberapa perangkat yang dibutuhkan untuk menunjang berjalannya penelitian dengan baik.

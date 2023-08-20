@@ -10,11 +10,17 @@ Berdasarkan hasil pengujian yang telah dilakukan, didapatkan beberapa kesimpulan
 
 \begin{enumerate}[nolistsep]
 
-  \item Program yang dibuat mampu menghasilkan jadwal untuk satu pekan perkuliahan.
-  \item Nilai dari probabilitas mutasi akan mempengaruhi durasi dari penyelesaian proses \linebreak penjadwalan. 
-        Semakin besar nilai probabilitas mutasi maka penyelesaian proses penjadwalan akan semakin lama, dan semakin mendekati 0 nilai dari probabilitas mutasi maka proses penyelesaian proses penyelesaian proses penjadwalan juga semakin lama.
-  \item Jumlah constraint pada perhitungan nilai fitness mempengaruhi durasi penyelesaian \linebreak proses penjadwalan. 
-        Semakin banyak constraint, maka proses penjadwalaan akan \linebreak semakin lama.
+  \item Program yang dibuat mampu memenuhi 4 \textit{\textit{constraint}} yang telah ditentukan dengan rata-rata waktu penyelesaian tercepat pada nilai probabilitas mutasi 0.06 dengan waktu 38m 47s.
+  \item Nilai dari probabilitas mutasi mempengaruhi durasi penyelesaian proses penjadwalan. 
+        Penyelesaian tercepat diperoleh pada nilai probabilitas mutasi 0.06, dan penyelesaian terlama diperoleh pada probabilitas mutasi 0.02. 
+  \item Jumlah \textit{constraint} pada perhitungan nilai fitness mempengaruhi durasi penyelesaian \linebreak proses penjadwalan. 
+        Peningkatan waktu penyelesaian dari 1 \textit{constraint} ke 2 \textit{constraint} sebesar 34.4\%, 
+        dari 2 \textit{constraint} ke 3 \textit{constraint} sebesar 166.071\%, 
+        dan dari 3 \textit{constraint} ke 4 \textit{constraint} sebesar 560.179\%.
+  \item Ukuran populasi mempengaruhi durasi penyelesaian dan jumlah generasi pada proses penjadwalan.
+        Durasi penyelesaian tercepat diperoleh pada 45 individu dengan waktu 1m 16s dan penyelesaian paling lama pada 35 individu dengan waktu 16m 4s.
+        Rasio jumlah generasi terhadap waktu terkecil diperoleh pada 25 individu dengan rasio generasi sebesar 127.217 generasi/detik.
+        Sedangkan rasio jumlah generasi terhadap waktu terbesar diperoleh pada 2 individu dengan rasio generasi sebesar 327.558 generasi/detik.
 
 \end{enumerate}
 
@@ -25,6 +31,7 @@ Untuk pengembangan lebih lanjut pada penelitian ini, terdapat beberapa saran ant
 
 \begin{enumerate}[nolistsep]
   \item Pada program ini semua mata kuliah dianggap memiliki 3 sks. Oleh karena itu pada penelitian lebih lanjut untuk memperhatikan bobot dari masing-masing mata kuliah.
+  \item Memperhatikan kompetensi masing-masing dosen karena tidak semua dosen tidak \linebreak mungkin bisa mengajar seluruh mata kuliah yang ada.
   \item Menambahkan fitur \emph{output} jadwal secara otomatis dalam bentuk tabel excel sehingga tidak perlu melakukannya secara manual.
   \item Menambahkan fitur input data untuk meningkatkan fleksibilitas program sehingga bisa menyesuaikan dengan kondisi yang dibutuhkan.
   \item Menambahkan GUI dan membuat program menjadi \emph{executable program} sehingga \linebreak mempermudah \emph{user} dalam menggunakan program penjadwalan otomatis ini tanpa harus menggunakan aplikasi lain.
